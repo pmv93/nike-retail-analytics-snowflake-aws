@@ -47,7 +47,6 @@ Your analytics platform includes actual Nike products:
 -- ✅ Single nike_data_stage for ALL file uploads
 -- ✅ 55+ sample Nike product reviews
 -- ✅ All database infrastructure
-```
 
 #### **Step 2: Upload Files When Prompted**
 
@@ -61,15 +60,10 @@ All CSV files are now in ONE flat folder for maximum simplicity!
 
 **Single Stage:** `nike_data_stage` - All CSV files are in `scripts/csv/` folder
 
-#### **Option 1: Snowflake Web UI (Recommended)**
+#### **Snowflake Web UI Upload Instructions**
 1. In Snowflake UI: **Databases** → **NIKE_PO_PROD** → **Schemas** → **PUBLIC** → **Stages**
 2. Click **NIKE_DATA_STAGE**
 3. Upload all 10 CSV files directly from the `scripts/csv/` folder (no subfolders needed!)
-
-#### **Option 2: SnowSQL Command Line**
-```bash
-PUT file://scripts/csv/*.csv @nike_po_prod.public.nike_data_stage;
-```
 
 #### **📋 Files to Upload (10 files in scripts/csv/):**
 - `item.csv` - Nike product details
