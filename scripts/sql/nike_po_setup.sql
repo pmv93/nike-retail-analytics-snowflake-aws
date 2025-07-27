@@ -141,18 +141,6 @@ CREATE OR REPLACE STAGE nike_po_prod.public.nike_data_stage
  * PUT file://scripts/csv/* @nike_po_prod.public.nike_data_stage auto_compress=false recursive=true;
  * 
  * 📋 EXPECTED FILES IN STAGE AFTER UPLOAD:
- * - csv/raw_supply_chain/item/item.csv
- * - csv/raw_supply_chain/recipe/recipe.csv  
- * - csv/raw_supply_chain/item_prices/item_prices.csv
- * - csv/raw_supply_chain/menu_prices/menu_prices.csv
- * - csv/raw_supply_chain/price_elasticity/price_elasticity.csv
- * - csv/raw_safegraph/core_poi_geometry.csv
- * - csv/harmonized/menu_item_aggregate_dt/menu_item_aggregate_dt.csv
- * - csv/harmonized/menu_item_cogs_and_price_v/menu_item_cogs_and_price_v.csv
- * - csv/analytics/menu_item_aggregate_v/menu_item_aggregate_v.csv
- * - csv/analytics/menu_item_cogs_and_price_v/menu_item_cogs_and_price_v.csv
- * - csv/analytics/order_item_cost_agg_v/order_item_cost_agg_v.csv
- * 
  * ⏭️ AFTER UPLOADING: Continue running this script from here...
  * 
  *************************************************************************************************************/
@@ -367,7 +355,7 @@ CREATE OR REPLACE TABLE nike_po_prod.raw_supply_chain.item
 
 --> item
 COPY INTO nike_po_prod.raw_supply_chain.item 
-FROM @nike_po_prod.public.nike_data_stage/csv/raw_supply_chain/item/item.csv
+FROM @nike_po_prod.public.nike_data_stage/csv/item.csv
 file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 
@@ -383,7 +371,7 @@ CREATE OR REPLACE TABLE nike_po_prod.raw_supply_chain.recipe
 
 --> recipe
 COPY INTO nike_po_prod.raw_supply_chain.recipe 
-FROM @nike_po_prod.public.nike_data_stage/csv/raw_supply_chain/recipe/recipe.csv
+FROM @nike_po_prod.public.nike_data_stage/csv/recipe.csv
 file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 --> item_prices
@@ -397,7 +385,7 @@ CREATE OR REPLACE TABLE nike_po_prod.raw_supply_chain.item_prices
 
 --> item_prices
 COPY INTO nike_po_prod.raw_supply_chain.item_prices 
-FROM @nike_po_prod.public.nike_data_stage/csv/raw_supply_chain/item_prices/item_prices.csv
+FROM @nike_po_prod.public.nike_data_stage/csv/item_prices.csv
 file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 --> price_elasticity
@@ -414,7 +402,7 @@ CREATE OR REPLACE TABLE nike_po_prod.raw_supply_chain.price_elasticity
 
 --> price_elasticity
 COPY INTO nike_po_prod.raw_supply_chain.price_elasticity 
-FROM @nike_po_prod.public.nike_data_stage/csv/raw_supply_chain/price_elasticity/price_elasticity.csv
+FROM @nike_po_prod.public.nike_data_stage/csv/price_elasticity.csv
 file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 --> menu_prices
@@ -428,7 +416,7 @@ CREATE OR REPLACE TABLE nike_po_prod.raw_supply_chain.menu_prices
 
 --> menu_prices
 COPY INTO nike_po_prod.raw_supply_chain.menu_prices 
-FROM @nike_po_prod.public.nike_data_stage/csv/raw_supply_chain/menu_prices/menu_prices.csv
+FROM @nike_po_prod.public.nike_data_stage/csv/menu_prices.csv
 file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 /*---------------------------*/
@@ -470,7 +458,7 @@ create or replace TABLE nike_po_prod.raw_safegraph.core_poi_geometry (
 
 --> core_poi_geometry
 COPY INTO nike_po_prod.raw_safegraph.core_poi_geometry
-FROM @nike_po_prod.public.nike_data_stage/csv/raw_safegraph/core_poi_geometry.csv
+FROM @nike_po_prod.public.nike_data_stage/csv/core_poi_geometry.csv
 file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 /*---------------------------*/
@@ -675,7 +663,7 @@ CREATE OR REPLACE TABLE NIKE_PO_PROD.HARMONIZED.MENU_ITEM_AGGREGATE_DT (
 
 --> menu_item_aggregate_dt
 COPY INTO nike_po_prod.harmonized.menu_item_aggregate_dt
-FROM @nike_po_prod.public.nike_data_stage/csv/harmonized/menu_item_aggregate_dt/menu_item_aggregate_dt.csv
+FROM @nike_po_prod.public.nike_data_stage/csv/menu_item_aggregate_dt.csv
 file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 /*---------------------------*/
