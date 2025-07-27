@@ -91,16 +91,22 @@ PUT file://scripts/csv/analytics/* @nike_po_prod.public.analytics_stage;
 
 ## 📋 **Execution Order**
 
-1. **Setup Database**: Run `scripts/sql/nike_po_setup.sql`
+1. **Setup Database**: Run `scripts/sql/nike_po_setup.sql` (this creates both databases and loads sample data)
 2. **Upload Data**: Upload Nike CSV files to stages (see above)
 3. **Re-run Setup**: Re-run `scripts/sql/nike_po_setup.sql` to load data into tables
-4. **Customer Reviews**: Run `setup/nike_reviews_setup.sql` 
-5. **Sample Data**: Run `scripts/nike_sample_reviews.sql`
-6. **Deploy Apps**: Upload notebooks and deploy Streamlit apps
+4. **Deploy Apps**: Upload notebooks and deploy Streamlit apps
+
+## 🎯 **Single Setup Script**
+
+The `nike_po_setup.sql` script now includes everything you need:
+- ✅ **Price Optimization Database** (`nike_po_prod`) with all Nike product data
+- ✅ **Customer Reviews Database** (`nike_reviews`) with Cortex AI capabilities  
+- ✅ **Sample Review Data** (55+ realistic Nike product reviews in multiple languages)
+- ✅ **Complete Analytics Views** for both pricing and sentiment analysis
 
 ## Customer Reviews Analytics Setup
 
-1. **Database Setup**: Run `setup/nike_reviews_setup.sql` to create the reviews database
-2. **Sample Data**: Load sample review data using `scripts/nike_sample_reviews.sql`
+1. **Database Setup**: Already included in `scripts/sql/nike_po_setup.sql`
+2. **Sample Data**: Already included in the main setup script
 3. **Analytics Notebook**: Open `notebooks/nike_product_review_analytics.ipynb` for Cortex-powered analysis
 4. **Streamlit Integration**: The pricing app now shows customer sentiment alongside pricing data
