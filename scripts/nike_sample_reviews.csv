@@ -1,0 +1,151 @@
+review_id,order_id,product_id,customer_id,language,source,review_text,rating,review_date,verified_purchase
+8,,6,1008,en,app,Decent Tech Fleece Hoodie. Nothing special but they're fine.,2.6,2024-05-03,True
+9,,6,1009,en,app,Average Tech Fleece Hoodie. They're alright for the price.,3.7,2024-09-26,False
+10,,7,1010,es,email,¡Fantásticas Dunk Low! Súper cómodas y se ven geniales.,5.0,2024-04-09,False
+11,1227,6,1011,en,app,Excellent Tech Fleece Hoodie! Great value for money and superior comfort.,4.7,2024-10-08,True
+12,,1,1012,en,website,Perfect Air Force 1 '07! Exactly what I was looking for. Great design and comfort.,4.6,2024-10-17,True
+13,,4,1013,es,website,Perfectas Metcon 9! Justo lo que buscaba. Gran diseño.,4.8,2024-12-23,True
+14,1913,1,1014,en,website,"Fantastic Air Force 1 '07! Comfortable, stylish, and well-made. Love them!",4.4,2024-02-22,False
+15,,6,1015,en,app,Bad Tech Fleece Hoodie. Sizing is off and comfort is lacking.,2.2,2024-09-21,True
+16,,1,1016,en,email,Terrible Air Force 1 '07! Overpriced and uncomfortable to wear.,1.9,2024-04-18,True
+17,1114,5,1017,en,app,Excellent Air Jordan 1 Low! Great value for money and superior comfort.,5.0,2024-04-17,True
+18,,2,1018,fr,social,Parfaites Air Max 90! Qualité exceptionnelle et bon ajustement.,4.8,2024-10-19,False
+19,1412,4,1019,en,website,"These Metcon 9 are fine. Not great, not terrible.",3.8,2024-11-02,True
+20,1511,5,1020,es,email,Terribles Air Jordan 1 Low. Mal ajuste y materiales baratos.,2.0,2024-04-08,True
+21,1444,6,1021,fr,social,Incroyables Tech Fleece Hoodie! Exactement ce que je cherchais.,4.2,2024-11-07,False
+22,,1,1022,en,email,Okay Air Force 1 '07. Could be better but acceptable.,2.6,2024-08-15,True
+23,,5,1023,en,social,Beautiful Air Jordan 1 Low! Perfect for daily wear and very comfortable.,4.2,2024-03-01,True
+24,1324,1,1024,es,social,Perfectas Air Force 1 '07! Justo lo que buscaba. Gran diseño.,4.3,2024-06-14,False
+25,1945,7,1025,es,social,Estas Dunk Low están bien. Calidad y comodidad promedio.,3.2,2024-03-16,True
+26,1744,6,1026,es,app,¡Fantásticas Tech Fleece Hoodie! Súper cómodas y se ven geniales.,5.0,2024-04-23,True
+27,,4,1027,en,email,Okay Metcon 9. Could be better but acceptable.,3.5,2024-10-03,True
+28,,7,1028,en,website,Average Dunk Low. They're alright for the price.,3.6,2024-09-10,True
+29,1223,4,1029,en,email,Excellent Metcon 9! Great value for money and superior comfort.,4.8,2024-08-05,True
+30,1540,7,1030,en,email,Amazing Dunk Low! Great quality and perfect fit. Worth every penny.,4.0,2024-12-28,True
+31,,3,1031,es,app,Excelente Air Zoom Pegasus 40! Calidad superior y ajuste perfecto.,4.5,2024-06-16,False
+32,1263,1,1032,es,app,Terribles Air Force 1 '07. Mal ajuste y materiales baratos.,2.2,2024-01-16,True
+33,1132,2,1033,en,app,These Air Max 90 are okay. Average quality and comfort.,3.8,2024-06-14,True
+34,,6,1034,en,website,Poor quality Tech Fleece Hoodie. Expected much better for this price.,2.0,2024-08-10,True
+35,1060,5,1035,en,social,Poor quality Air Jordan 1 Low. Expected much better for this price.,1.1,2024-08-18,True
+36,1563,3,1036,en,website,Incredible Air Zoom Pegasus 40! Best purchase I've made in a while. Top quality!,4.4,2024-09-16,True
+37,1366,3,1037,en,app,Average Air Zoom Pegasus 40. They're alright for the price.,3.4,2024-05-19,True
+38,,4,1038,fr,app,Incroyables Metcon 9! Exactement ce que je cherchais.,4.9,2024-03-24,False
+39,,5,1039,es,social,¡Increíbles Air Jordan 1 Low! Muy cómodas y con estilo perfecto.,4.8,2024-05-21,False
+40,,7,1040,fr,website,Incroyables Dunk Low! Exactement ce que je cherchais.,4.3,2024-02-02,False
+41,,1,1041,en,email,Incredible Air Force 1 '07! Best purchase I've made in a while. Top quality!,5.0,2024-12-07,True
+42,1048,5,1042,en,social,Perfect Air Jordan 1 Low! Exactly what I was looking for. Great design and comfort.,4.6,2024-12-25,True
+43,1319,7,1043,es,app,¡Fantásticas Dunk Low! Súper cómodas y se ven geniales.,5.0,2024-02-25,True
+44,1118,1,1044,en,social,Disappointing Air Force 1 '07. Materials feel cheap and sizing is wrong.,1.2,2024-09-26,False
+45,1794,5,1045,en,website,Amazing Air Jordan 1 Low! Great quality and perfect fit. Worth every penny.,4.5,2024-01-19,False
+46,,7,1046,es,website,¡Increíbles Dunk Low! Muy cómodas y con estilo perfecto.,4.4,2024-11-09,False
+47,,7,1047,es,website,¡Increíbles Dunk Low! Muy cómodas y con estilo perfecto.,4.9,2024-09-06,False
+48,1490,4,1048,en,website,Incredible Metcon 9! Best purchase I've made in a while. Top quality!,4.3,2024-02-19,True
+49,,3,1049,en,social,Love these Air Zoom Pegasus 40! Excellent comfort and style. Highly recommend!,4.1,2024-05-21,False
+50,,6,1050,es,social,¡Fantásticas Tech Fleece Hoodie! Súper cómodas y se ven geniales.,4.1,2024-02-29,True
+51,,2,1051,es,social,Excelente Air Max 90! Calidad superior y ajuste perfecto.,4.7,2024-01-30,True
+52,,7,1052,en,app,Amazing Dunk Low! Great quality and perfect fit. Worth every penny.,4.7,2024-09-09,False
+53,,7,1053,en,website,Beautiful Dunk Low! Perfect for daily wear and very comfortable.,4.3,2024-04-07,True
+54,1575,5,1054,es,email,¡Increíbles Air Jordan 1 Low! Muy cómodas y con estilo perfecto.,4.3,2024-05-02,False
+55,,4,1055,en,email,Beautiful Metcon 9! Perfect for daily wear and very comfortable.,4.0,2024-06-23,True
+56,1899,3,1056,fr,social,Affreuses Air Zoom Pegasus 40! Ne valent pas l'argent. Qualité médiocre.,1.4,2024-04-26,True
+57,1183,7,1057,es,email,Excelente Dunk Low! Calidad superior y ajuste perfecto.,4.0,2024-05-20,False
+58,1693,3,1058,es,app,¡Increíbles Air Zoom Pegasus 40! Muy cómodas y con estilo perfecto.,4.8,2024-09-11,True
+59,1073,1,1059,en,website,Incredible Air Force 1 '07! Best purchase I've made in a while. Top quality!,4.5,2024-11-18,False
+60,,6,1060,es,website,No satisfecho con Tech Fleece Hoodie. Incómodas y muy caras.,1.6,2024-09-23,True
+61,1964,3,1061,es,app,¡Increíbles Air Zoom Pegasus 40! Muy cómodas y con estilo perfecto.,4.5,2024-06-16,True
+62,1040,6,1062,en,website,Outstanding Tech Fleece Hoodie! Super comfortable and looks fantastic. 5 stars!,4.6,2024-01-13,True
+63,1737,6,1063,es,app,¡Fantásticas Tech Fleece Hoodie! Súper cómodas y se ven geniales.,4.4,2024-06-26,False
+64,,7,1064,en,email,Outstanding Dunk Low! Super comfortable and looks fantastic. 5 stars!,4.5,2024-12-02,True
+65,1579,6,1065,fr,app,Excellentes Tech Fleece Hoodie! Très confortables et stylées.,5.0,2024-10-03,True
+66,,5,1066,fr,website,Parfaites Air Jordan 1 Low! Qualité exceptionnelle et bon ajustement.,4.0,2024-06-24,False
+67,,1,1067,en,social,These Air Force 1 '07 are alright. Expected a bit more though.,2.6,2024-09-25,False
+68,,6,1068,es,email,Decentes Tech Fleece Hoodie. Nada especial pero están bien.,2.8,2024-05-30,False
+69,,2,1069,es,app,Promedio Air Max 90. Están bien para el precio.,3.1,2024-08-19,True
+70,1383,3,1070,en,website,These Air Zoom Pegasus 40 are alright. Expected a bit more though.,2.8,2024-11-04,False
+71,1171,4,1071,es,social,Perfectas Metcon 9! Justo lo que buscaba. Gran diseño.,5.0,2024-08-05,False
+72,,7,1072,en,social,Excellent Dunk Low! Great value for money and superior comfort.,4.5,2024-09-08,False
+73,1695,1,1073,en,app,Beautiful Air Force 1 '07! Perfect for daily wear and very comfortable.,4.3,2024-04-01,True
+74,1368,5,1074,fr,social,Pas satisfait des Air Jordan 1 Low. Inconfortables et chères.,1.5,2024-02-16,False
+75,1283,1,1075,en,website,"Fantastic Air Force 1 '07! Comfortable, stylish, and well-made. Love them!",4.6,2024-03-16,False
+76,1259,4,1076,es,app,¡Increíbles Metcon 9! Muy cómodas y con estilo perfecto.,4.0,2024-02-12,True
+77,1372,7,1077,en,email,Bad Dunk Low. Sizing is off and comfort is lacking.,2.3,2024-02-07,True
+78,1019,2,1078,en,social,Average Air Max 90. They're alright for the price.,3.6,2024-08-31,False
+79,1196,5,1079,en,app,Average Air Jordan 1 Low. They're alright for the price.,2.6,2024-06-30,True
+80,1218,3,1080,en,email,Disappointing Air Zoom Pegasus 40. Materials feel cheap and sizing is wrong.,2.1,2024-10-05,True
+81,,6,1081,en,social,Fair Tech Fleece Hoodie. They do the job but nothing amazing.,3.0,2024-08-22,False
+82,1063,6,1082,en,social,Beautiful Tech Fleece Hoodie! Perfect for daily wear and very comfortable.,4.3,2024-10-22,True
+83,,1,1083,fr,email,Ces Air Force 1 '07 sont bien. Ni géniales ni terribles.,3.4,2024-12-29,True
+84,,7,1084,en,app,Excellent Dunk Low! Great value for money and superior comfort.,4.3,2024-02-23,False
+85,,4,1085,en,email,Amazing Metcon 9! Great quality and perfect fit. Worth every penny.,4.6,2024-04-02,True
+86,,2,1086,es,email,Decepcionado con estas Air Max 90. Mala calidad por el precio.,1.7,2024-12-28,False
+87,1686,3,1087,en,social,These Air Zoom Pegasus 40 are terrible. Bad fit and cheap materials.,2.3,2024-05-10,True
+88,1324,3,1088,en,website,These Air Zoom Pegasus 40 are okay. Average quality and comfort.,2.8,2024-01-21,True
+89,2000,5,1089,en,website,Beautiful Air Jordan 1 Low! Perfect for daily wear and very comfortable.,4.7,2024-08-04,False
+90,,4,1090,es,email,¡Fantásticas Metcon 9! Súper cómodas y se ven geniales.,4.0,2024-09-19,False
+91,1737,4,1091,en,website,Terrible Metcon 9! Overpriced and uncomfortable to wear.,1.0,2024-08-14,False
+92,1336,3,1092,en,social,"Fantastic Air Zoom Pegasus 40! Comfortable, stylish, and well-made. Love them!",4.3,2024-06-25,True
+93,1148,1,1093,en,app,Incredible Air Force 1 '07! Best purchase I've made in a while. Top quality!,4.8,2024-06-02,True
+94,1508,1,1094,fr,social,Ces Air Force 1 '07 sont bien. Ni géniales ni terribles.,3.1,2024-01-23,False
+95,,7,1095,en,email,Beautiful Dunk Low! Perfect for daily wear and very comfortable.,4.8,2024-07-07,True
+96,,7,1096,en,website,Bad Dunk Low. Sizing is off and comfort is lacking.,1.1,2024-06-13,False
+97,1251,1,1097,en,app,Amazing Air Force 1 '07! Great quality and perfect fit. Worth every penny.,4.9,2024-04-26,True
+98,,4,1098,es,app,Perfectas Metcon 9! Justo lo que buscaba. Gran diseño.,4.4,2024-10-09,False
+99,,2,1099,es,email,¡Horribles Air Max 90! No valen el dinero. Calidad pésima.,1.7,2024-03-22,False
+100,1857,1,1100,en,app,Not satisfied with Air Force 1 '07. Uncomfortable and overpriced.,1.9,2024-10-28,True
+101,1613,6,1101,fr,website,Terribles Tech Fleece Hoodie. Mauvais ajustement et matériaux bon marché.,1.0,2024-11-07,False
+102,,5,1102,en,social,Poor quality Air Jordan 1 Low. Expected much better for this price.,1.4,2024-07-02,True
+103,,1,1103,es,website,Excelente Air Force 1 '07! Calidad superior y ajuste perfecto.,4.1,2024-05-11,False
+104,1310,1,1104,es,app,¡Increíbles Air Force 1 '07! Muy cómodas y con estilo perfecto.,4.5,2024-08-30,True
+105,,3,1105,fr,social,Incroyables Air Zoom Pegasus 40! Exactement ce que je cherchais.,4.7,2024-06-27,True
+106,,7,1106,es,social,Excelente Dunk Low! Calidad superior y ajuste perfecto.,4.1,2024-12-14,True
+107,,5,1107,fr,social,Terribles Air Jordan 1 Low. Mauvais ajustement et matériaux bon marché.,1.0,2024-06-26,True
+108,1979,1,1108,en,website,These Air Force 1 '07 are decent. Pretty standard quality.,3.3,2024-10-14,False
+109,,3,1109,en,website,Amazing Air Zoom Pegasus 40! Great quality and perfect fit. Worth every penny.,4.8,2024-09-18,True
+110,,5,1110,en,app,Okay Air Jordan 1 Low. Could be better but acceptable.,2.9,2024-03-28,False
+111,1143,3,1111,fr,website,Parfaites Air Zoom Pegasus 40! Qualité exceptionnelle et bon ajustement.,4.3,2024-08-03,False
+112,,6,1112,es,app,Perfectas Tech Fleece Hoodie! Justo lo que buscaba. Gran diseño.,4.7,2024-07-10,False
+113,1370,1,1113,es,email,Perfectas Air Force 1 '07! Justo lo que buscaba. Gran diseño.,4.1,2024-05-30,False
+114,1751,7,1114,fr,website,Ces Dunk Low sont correctes. Qualité et confort moyens.,2.9,2024-01-04,True
+115,,1,1115,es,app,Excelente Air Force 1 '07! Calidad superior y ajuste perfecto.,4.2,2024-05-11,False
+116,1680,7,1116,es,app,¡Fantásticas Dunk Low! Súper cómodas y se ven geniales.,4.1,2024-03-16,False
+117,,3,1117,en,social,These Air Zoom Pegasus 40 are decent. Pretty standard quality.,3.3,2024-11-19,False
+118,1087,6,1118,en,website,Average Tech Fleece Hoodie. They're alright for the price.,3.2,2024-10-20,True
+119,,5,1119,fr,app,Décentes Air Jordan 1 Low. Rien d'exceptionnel mais ça va.,3.2,2024-12-23,False
+120,1912,4,1120,en,social,Incredible Metcon 9! Best purchase I've made in a while. Top quality!,4.5,2024-11-21,True
+121,,3,1121,fr,email,Parfaites Air Zoom Pegasus 40! Qualité exceptionnelle et bon ajustement.,4.7,2024-11-17,True
+122,1839,3,1122,fr,app,Ces Air Zoom Pegasus 40 sont bien. Ni géniales ni terribles.,2.7,2024-03-11,False
+123,,1,1123,fr,email,Fantastiques Air Force 1 '07! Super confortables et belles.,5.0,2024-11-25,True
+124,,4,1124,en,website,Love these Metcon 9! Excellent comfort and style. Highly recommend!,4.6,2024-10-27,True
+125,,6,1125,en,email,Fair Tech Fleece Hoodie. They do the job but nothing amazing.,3.1,2024-03-13,True
+126,,5,1126,en,app,Disappointing Air Jordan 1 Low. Materials feel cheap and sizing is wrong.,1.4,2024-11-06,False
+127,1705,1,1127,en,social,Excellent Air Force 1 '07! Great value for money and superior comfort.,4.1,2024-09-04,False
+128,1511,1,1128,en,email,Bad Air Force 1 '07. Sizing is off and comfort is lacking.,1.5,2024-10-14,False
+129,,3,1129,en,website,Amazing Air Zoom Pegasus 40! Great quality and perfect fit. Worth every penny.,4.7,2024-07-05,False
+130,,1,1130,es,social,Terribles Air Force 1 '07. Mal ajuste y materiales baratos.,2.1,2024-01-24,False
+131,1737,2,1131,en,website,Outstanding Air Max 90! Super comfortable and looks fantastic. 5 stars!,4.9,2024-03-25,False
+132,,4,1132,es,app,Perfectas Metcon 9! Justo lo que buscaba. Gran diseño.,4.3,2024-12-25,False
+133,,3,1133,en,email,"Fantastic Air Zoom Pegasus 40! Comfortable, stylish, and well-made. Love them!",4.3,2024-02-09,False
+134,,6,1134,en,social,"These Tech Fleece Hoodie are fine. Not great, not terrible.",3.7,2024-07-24,True
+135,,2,1135,en,app,Not satisfied with Air Max 90. Uncomfortable and overpriced.,1.8,2024-10-03,True
+136,1345,3,1136,en,email,Awful Air Zoom Pegasus 40! Not worth the money. Quality is poor.,1.7,2024-06-23,False
+137,1969,5,1137,en,social,Amazing Air Jordan 1 Low! Great quality and perfect fit. Worth every penny.,4.3,2024-08-29,True
+138,,4,1138,fr,social,Parfaites Metcon 9! Qualité exceptionnelle et bon ajustement.,4.1,2024-10-18,False
+139,1354,6,1139,en,email,"Fantastic Tech Fleece Hoodie! Comfortable, stylish, and well-made. Love them!",4.5,2024-02-18,False
+140,1946,3,1140,en,email,Disappointing Air Zoom Pegasus 40. Materials feel cheap and sizing is wrong.,1.1,2024-07-04,False
+141,,3,1141,en,website,These Air Zoom Pegasus 40 are alright. Expected a bit more though.,3.2,2024-08-14,False
+142,1291,1,1142,en,social,Disappointing Air Force 1 '07. Materials feel cheap and sizing is wrong.,1.9,2024-01-29,True
+143,1287,3,1143,en,website,Terrible Air Zoom Pegasus 40! Overpriced and uncomfortable to wear.,1.4,2024-09-19,True
+144,,6,1144,en,email,Excellent Tech Fleece Hoodie! Great value for money and superior comfort.,4.4,2024-06-20,True
+145,,5,1145,en,website,Excellent Air Jordan 1 Low! Great value for money and superior comfort.,4.6,2024-02-04,True
+146,1336,5,1146,en,email,Average Air Jordan 1 Low. They're alright for the price.,4.0,2024-12-30,False
+147,1156,5,1147,en,app,"Fantastic Air Jordan 1 Low! Comfortable, stylish, and well-made. Love them!",4.5,2024-07-06,True
+148,1764,5,1148,es,social,¡Increíbles Air Jordan 1 Low! Muy cómodas y con estilo perfecto.,4.9,2024-05-27,False
+149,,6,1149,es,website,¡Increíbles Tech Fleece Hoodie! Muy cómodas y con estilo perfecto.,4.9,2024-02-12,True
+150,1875,7,1150,en,website,Okay Dunk Low. Could be better but acceptable.,2.9,2024-01-20,True
+151,,5,1151,es,app,Perfectas Air Jordan 1 Low! Justo lo que buscaba. Gran diseño.,4.5,2024-09-07,False
+152,1578,4,1152,en,website,Excellent Metcon 9! Great value for money and superior comfort.,4.3,2024-12-30,True
+153,,5,1153,en,app,Disappointing Air Jordan 1 Low. Materials feel cheap and sizing is wrong.,1.5,2024-11-13,True
+154,,3,1154,en,website,Disappointing Air Zoom Pegasus 40. Materials feel cheap and sizing is wrong.,2.4,2024-06-18,True
+155,,3,1155,es,social,Perfectas Air Zoom Pegasus 40! Justo lo que buscaba. Gran diseño.,4.9,2024-10-05,True
+156,1239,4,1156,en,app,Okay Metcon 9. Could be better but acceptable.,3.2,2024-03-17,True
+157,,7,1157,en,email,Perfect Dunk Low! Exactly what I was looking for. Great design and comfort.,4.9,2024-03-31,False

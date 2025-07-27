@@ -5,87 +5,87 @@ Instructions: Run all of this script to create the required tables and roles.
 
 use role securityadmin;
 
--- create tb_po_data_scientist
-CREATE OR REPLACE ROLE tb_po_data_scientist;
+-- create nike_po_data_scientist
+CREATE OR REPLACE ROLE nike_po_data_scientist;
 
 use role accountadmin;
 
 /*---------------------------*/
 -- create our Database
 /*---------------------------*/
-CREATE OR REPLACE DATABASE tb_po_prod;
+CREATE OR REPLACE DATABASE nike_po_prod;
 
 /*---------------------------*/
 -- create our Schemas
 /*---------------------------*/
-CREATE OR REPLACE SCHEMA tb_po_prod.raw_pos;
-CREATE OR REPLACE SCHEMA tb_po_prod.raw_supply_chain;
-CREATE OR REPLACE SCHEMA tb_po_prod.raw_customer;
-CREATE OR REPLACE SCHEMA tb_po_prod.harmonized;
-CREATE OR REPLACE SCHEMA tb_po_prod.analytics;
-CREATE OR REPLACE SCHEMA tb_po_prod.raw_safegraph;
-CREATE OR REPLACE SCHEMA tb_po_prod.public;
+CREATE OR REPLACE SCHEMA nike_po_prod.raw_pos;
+CREATE OR REPLACE SCHEMA nike_po_prod.raw_supply_chain;
+CREATE OR REPLACE SCHEMA nike_po_prod.raw_customer;
+CREATE OR REPLACE SCHEMA nike_po_prod.harmonized;
+CREATE OR REPLACE SCHEMA nike_po_prod.analytics;
+CREATE OR REPLACE SCHEMA nike_po_prod.raw_safegraph;
+CREATE OR REPLACE SCHEMA nike_po_prod.public;
 
 /*---------------------------*/
 -- create our Warehouses
 /*---------------------------*/
 
 -- data science warehouse
-CREATE OR REPLACE WAREHOUSE tb_po_ds_wh
+CREATE OR REPLACE WAREHOUSE nike_po_ds_wh
     WAREHOUSE_SIZE = 'xxxlarge'
     WAREHOUSE_TYPE = 'standard'
     AUTO_SUSPEND = 60
     AUTO_RESUME = TRUE
     INITIALLY_SUSPENDED = TRUE
-COMMENT = 'data science warehouse for tasty bytes';
+COMMENT = 'data science warehouse for nike';
 
-CREATE OR REPLACE WAREHOUSE tb_po_app_wh
+CREATE OR REPLACE WAREHOUSE nike_po_app_wh
     WAREHOUSE_SIZE = 'xsmall'
     WAREHOUSE_TYPE = 'standard'
     AUTO_SUSPEND = 60
     AUTO_RESUME = TRUE
     INITIALLY_SUSPENDED = TRUE
-COMMENT = 'streamlit app warehouse for tasty bytes';
+COMMENT = 'streamlit app warehouse for nike';
 
 -- use our Warehouse
-USE WAREHOUSE tb_po_ds_wh;
+USE WAREHOUSE nike_po_ds_wh;
 
--- grant tb_po_ds_wh priviledges to tb_po_data_scientist role
-GRANT USAGE ON WAREHOUSE tb_po_ds_wh TO ROLE tb_po_data_scientist;
-GRANT OPERATE ON WAREHOUSE tb_po_ds_wh TO ROLE tb_po_data_scientist;
-GRANT MONITOR ON WAREHOUSE tb_po_ds_wh TO ROLE tb_po_data_scientist;
-GRANT MODIFY ON WAREHOUSE tb_po_ds_wh TO ROLE tb_po_data_scientist;
+-- grant nike_po_ds_wh priviledges to nike_po_data_scientist role
+GRANT USAGE ON WAREHOUSE nike_po_ds_wh TO ROLE nike_po_data_scientist;
+GRANT OPERATE ON WAREHOUSE nike_po_ds_wh TO ROLE nike_po_data_scientist;
+GRANT MONITOR ON WAREHOUSE nike_po_ds_wh TO ROLE nike_po_data_scientist;
+GRANT MODIFY ON WAREHOUSE nike_po_ds_wh TO ROLE nike_po_data_scientist;
 
--- grant tb_po_app_wh priviledges to tb_po_data_scientist role
-GRANT USAGE ON WAREHOUSE tb_po_app_wh TO ROLE tb_po_data_scientist;
-GRANT OPERATE ON WAREHOUSE tb_po_app_wh TO ROLE tb_po_data_scientist;
-GRANT MONITOR ON WAREHOUSE tb_po_app_wh TO ROLE tb_po_data_scientist;
-GRANT MODIFY ON WAREHOUSE tb_po_app_wh TO ROLE tb_po_data_scientist;
+-- grant nike_po_app_wh priviledges to nike_po_data_scientist role
+GRANT USAGE ON WAREHOUSE nike_po_app_wh TO ROLE nike_po_data_scientist;
+GRANT OPERATE ON WAREHOUSE nike_po_app_wh TO ROLE nike_po_data_scientist;
+GRANT MONITOR ON WAREHOUSE nike_po_app_wh TO ROLE nike_po_data_scientist;
+GRANT MODIFY ON WAREHOUSE nike_po_app_wh TO ROLE nike_po_data_scientist;
 
--- grant tb_doc_ai database privileges
-GRANT ALL ON DATABASE tb_po_prod TO ROLE tb_po_data_scientist;
+-- grant nike database privileges
+GRANT ALL ON DATABASE nike_po_prod TO ROLE nike_po_data_scientist;
 
-GRANT ALL ON SCHEMA tb_po_prod.raw_pos TO ROLE tb_po_data_scientist;
-GRANT ALL ON SCHEMA tb_po_prod.raw_supply_chain TO ROLE tb_po_data_scientist;
-GRANT ALL ON SCHEMA tb_po_prod.raw_customer TO ROLE tb_po_data_scientist;
-GRANT ALL ON SCHEMA tb_po_prod.harmonized TO ROLE tb_po_data_scientist;
-GRANT ALL ON SCHEMA tb_po_prod.analytics TO ROLE tb_po_data_scientist;
-GRANT ALL ON SCHEMA tb_po_prod.raw_safegraph TO ROLE tb_po_data_scientist;
-GRANT ALL ON SCHEMA tb_po_prod.public TO ROLE tb_po_data_scientist;
+GRANT ALL ON SCHEMA nike_po_prod.raw_pos TO ROLE nike_po_data_scientist;
+GRANT ALL ON SCHEMA nike_po_prod.raw_supply_chain TO ROLE nike_po_data_scientist;
+GRANT ALL ON SCHEMA nike_po_prod.raw_customer TO ROLE nike_po_data_scientist;
+GRANT ALL ON SCHEMA nike_po_prod.harmonized TO ROLE nike_po_data_scientist;
+GRANT ALL ON SCHEMA nike_po_prod.analytics TO ROLE nike_po_data_scientist;
+GRANT ALL ON SCHEMA nike_po_prod.raw_safegraph TO ROLE nike_po_data_scientist;
+GRANT ALL ON SCHEMA nike_po_prod.public TO ROLE nike_po_data_scientist;
 
-GRANT CREATE STAGE ON SCHEMA tb_po_prod.analytics TO ROLE tb_po_data_scientist;
-GRANT CREATE STAGE ON SCHEMA tb_po_prod.public TO ROLE tb_po_data_scientist;
+GRANT CREATE STAGE ON SCHEMA nike_po_prod.analytics TO ROLE nike_po_data_scientist;
+GRANT CREATE STAGE ON SCHEMA nike_po_prod.public TO ROLE nike_po_data_scientist;
 
-GRANT ALL ON ALL STAGES IN SCHEMA tb_po_prod.analytics TO ROLE tb_po_data_scientist;
-GRANT ALL ON ALL STAGES IN SCHEMA tb_po_prod.public TO ROLE tb_po_data_scientist;
+GRANT ALL ON ALL STAGES IN SCHEMA nike_po_prod.analytics TO ROLE nike_po_data_scientist;
+GRANT ALL ON ALL STAGES IN SCHEMA nike_po_prod.public TO ROLE nike_po_data_scientist;
 
 -- set my_user_var variable to equal the logged-in user
 SET my_user_var = (SELECT  '"' || CURRENT_USER() || '"' );
 
 -- grant the logged in user the doc_ai_role
-GRANT ROLE tb_po_data_scientist TO USER identifier($my_user_var);
+GRANT ROLE nike_po_data_scientist TO USER identifier($my_user_var);
 
-USE ROLE tb_po_data_scientist;
+USE ROLE nike_po_data_scientist;
 
 show grants to role accountadmin;
 
@@ -93,7 +93,7 @@ show grants to role accountadmin;
 -- create file format
 /*---------------------------*/
 
-create or replace file format tb_po_prod.public.csv_ff
+create or replace file format nike_po_prod.public.csv_ff
 type = 'CSV'
 field_delimiter = ','
 record_delimiter = '\n'
@@ -104,38 +104,38 @@ skip_header = 1;
 /*---------------------------*/
 -- create Stages
 /*---------------------------*/
-CREATE OR REPLACE STAGE tb_po_prod.public.analytics_s3
+CREATE OR REPLACE STAGE nike_po_prod.public.analytics_s3
   URL = 's3://sfquickstarts/frostbyte_tastybytes/analytics'
-  FILE_FORMAT = tb_po_prod.public.csv_ff;
+  FILE_FORMAT = nike_po_prod.public.csv_ff;
 
-CREATE OR REPLACE STAGE tb_po_prod.public.harmonized_s3
+CREATE OR REPLACE STAGE nike_po_prod.public.harmonized_s3
   URL = 's3://sfquickstarts/frostbyte_tastybytes/harmonized'
-  FILE_FORMAT = tb_po_prod.public.csv_ff;
+  FILE_FORMAT = nike_po_prod.public.csv_ff;
 
 -- raw_safegraph s3
-CREATE OR REPLACE STAGE tb_po_prod.public.raw_safegraph_s3
+CREATE OR REPLACE STAGE nike_po_prod.public.raw_safegraph_s3
   URL = 's3://sfquickstarts/frostbyte_tastybytes/raw_safegraph'
-  FILE_FORMAT = tb_po_prod.public.csv_ff;
+  FILE_FORMAT = nike_po_prod.public.csv_ff;
 
 -- raw_supply_chain s3
-CREATE OR REPLACE STAGE tb_po_prod.public.raw_supply_chain_s3
+CREATE OR REPLACE STAGE nike_po_prod.public.raw_supply_chain_s3
   URL = 's3://sfquickstarts/frostbyte_tastybytes/raw_supply_chain'
-  FILE_FORMAT = tb_po_prod.public.csv_ff;
+  FILE_FORMAT = nike_po_prod.public.csv_ff;
 
-CREATE OR REPLACE STAGE tb_po_prod.public.excel_s3
+CREATE OR REPLACE STAGE nike_po_prod.public.excel_s3
   URL = 's3://sfquickstarts/frostbyte_tastybytes/excel'
-  FILE_FORMAT = tb_po_prod.public.csv_ff;
+  FILE_FORMAT = nike_po_prod.public.csv_ff;
 
 -- raw_pos
-CREATE OR REPLACE STAGE tb_po_prod.public.raw_pos_s3
+CREATE OR REPLACE STAGE nike_po_prod.public.raw_pos_s3
   URL = 's3://sfquickstarts/frostbyte_tastybytes/raw_pos'
-  FILE_FORMAT = tb_po_prod.public.csv_ff;
+  FILE_FORMAT = nike_po_prod.public.csv_ff;
 
 
 -- raw_customer
-CREATE OR REPLACE STAGE tb_po_prod.public.raw_customer_s3
+CREATE OR REPLACE STAGE nike_po_prod.public.raw_customer_s3
   URL = 's3://sfquickstarts/frostbyte_tastybytes/raw_customer'
-  FILE_FORMAT = tb_po_prod.public.csv_ff;
+  FILE_FORMAT = nike_po_prod.public.csv_ff;
 
 
 /*---------------------------*/
@@ -143,7 +143,7 @@ CREATE OR REPLACE STAGE tb_po_prod.public.raw_customer_s3
 /*---------------------------*/
 
 --> menu
-CREATE OR REPLACE TABLE tb_po_prod.raw_pos.menu
+CREATE OR REPLACE TABLE nike_po_prod.raw_pos.menu
 (
     menu_id NUMBER(19,0),
     menu_type_id NUMBER(38,0),
@@ -159,12 +159,12 @@ CREATE OR REPLACE TABLE tb_po_prod.raw_pos.menu
 );
 
 --> menu
-COPY INTO tb_po_prod.raw_pos.menu
-FROM @tb_po_prod.public.raw_pos_s3/menu/menu.csv
-file_format = (format_name = 'tb_po_prod.public.csv_ff');
+COPY INTO nike_po_prod.raw_pos.menu
+FROM @nike_po_prod.public.raw_pos_s3/menu/menu.csv
+file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 --> truck
-CREATE OR REPLACE TABLE tb_po_prod.raw_pos.truck
+CREATE OR REPLACE TABLE nike_po_prod.raw_pos.truck
 (
     truck_id NUMBER(38,0),
     menu_type_id NUMBER(38,0),
@@ -183,13 +183,13 @@ CREATE OR REPLACE TABLE tb_po_prod.raw_pos.truck
 );
 
 --> truck
-COPY INTO tb_po_prod.raw_pos.truck
-FROM @tb_po_prod.public.raw_pos_s3/truck/truck.csv
-file_format = (format_name = 'tb_po_prod.public.csv_ff');
+COPY INTO nike_po_prod.raw_pos.truck
+FROM @nike_po_prod.public.raw_pos_s3/truck/truck.csv
+file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 
 --> country
-CREATE OR REPLACE TABLE tb_po_prod.raw_pos.country
+CREATE OR REPLACE TABLE nike_po_prod.raw_pos.country
 (
 	COUNTRY_ID NUMBER(18,0),
 	COUNTRY VARCHAR(16777216),
@@ -201,12 +201,12 @@ CREATE OR REPLACE TABLE tb_po_prod.raw_pos.country
 );
 
 --> country
-COPY INTO tb_po_prod.raw_pos.country
-FROM @tb_po_prod.public.raw_pos_s3/country/country.csv
-file_format = (format_name = 'tb_po_prod.public.csv_ff');
+COPY INTO nike_po_prod.raw_pos.country
+FROM @nike_po_prod.public.raw_pos_s3/country/country.csv
+file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 --> franchise
-CREATE OR REPLACE TABLE tb_po_prod.raw_pos.franchise
+CREATE OR REPLACE TABLE nike_po_prod.raw_pos.franchise
 (
     FRANCHISE_ID NUMBER(38,0),
 	FIRST_NAME VARCHAR(16777216),
@@ -218,13 +218,13 @@ CREATE OR REPLACE TABLE tb_po_prod.raw_pos.franchise
 );
 
 --> franchise
-COPY INTO tb_po_prod.raw_pos.franchise
-FROM @tb_po_prod.public.raw_pos_s3/franchise/franchise.csv
-file_format = (format_name = 'tb_po_prod.public.csv_ff');
+COPY INTO nike_po_prod.raw_pos.franchise
+FROM @nike_po_prod.public.raw_pos_s3/franchise/franchise.csv
+file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 
 --> location
-CREATE OR REPLACE TABLE tb_po_prod.raw_pos.location
+CREATE OR REPLACE TABLE nike_po_prod.raw_pos.location
 (
 	LOCATION_ID NUMBER(19,0),
 	PLACEKEY VARCHAR(16777216),
@@ -236,12 +236,12 @@ CREATE OR REPLACE TABLE tb_po_prod.raw_pos.location
 );
 
 --> location
-COPY INTO tb_po_prod.raw_pos.location
-FROM @tb_po_prod.public.raw_pos_s3/location/location.csv
-file_format = (format_name = 'tb_po_prod.public.csv_ff');
+COPY INTO nike_po_prod.raw_pos.location
+FROM @nike_po_prod.public.raw_pos_s3/location/location.csv
+file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 --> order_header
-CREATE OR REPLACE TABLE tb_po_prod.raw_pos.order_header
+CREATE OR REPLACE TABLE nike_po_prod.raw_pos.order_header
 (
     order_id NUMBER(38,0),
     truck_id NUMBER(38,0),
@@ -261,13 +261,13 @@ CREATE OR REPLACE TABLE tb_po_prod.raw_pos.order_header
     order_total NUMBER(38,4)
 );
 
-COPY INTO tb_po_prod.raw_pos.order_header
-FROM @tb_po_prod.public.raw_pos_s3/order_header
-file_format = (format_name = 'tb_po_prod.public.csv_ff');
+COPY INTO nike_po_prod.raw_pos.order_header
+FROM @nike_po_prod.public.raw_pos_s3/order_header
+file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 
 --> order_detail
-CREATE OR REPLACE TABLE tb_po_prod.raw_pos.order_detail
+CREATE OR REPLACE TABLE nike_po_prod.raw_pos.order_detail
 (
 	ORDER_DETAIL_ID NUMBER(38,0),
 	ORDER_ID NUMBER(38,0),
@@ -281,16 +281,16 @@ CREATE OR REPLACE TABLE tb_po_prod.raw_pos.order_detail
 );
 
 --> order_detail
-COPY INTO tb_po_prod.raw_pos.order_detail
-FROM @tb_po_prod.public.raw_pos_s3/order_detail
-file_format = (format_name = 'tb_po_prod.public.csv_ff');
+COPY INTO nike_po_prod.raw_pos.order_detail
+FROM @nike_po_prod.public.raw_pos_s3/order_detail
+file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 /*---------------------------*/
 -- create raw_customer table
 /*---------------------------*/
 
 --> customer_loyalty
-CREATE OR REPLACE TABLE tb_po_prod.raw_customer.customer_loyalty
+CREATE OR REPLACE TABLE nike_po_prod.raw_customer.customer_loyalty
 (
 	CUSTOMER_ID NUMBER(38,0),
 	FIRST_NAME VARCHAR(16777216),
@@ -310,16 +310,16 @@ CREATE OR REPLACE TABLE tb_po_prod.raw_customer.customer_loyalty
 );
 
 --> customer_loyalty
-COPY INTO tb_po_prod.raw_customer.customer_loyalty
-FROM @tb_po_prod.public.raw_customer_s3/customer_loyalty
-file_format = (format_name = 'tb_po_prod.public.csv_ff');
+COPY INTO nike_po_prod.raw_customer.customer_loyalty
+FROM @nike_po_prod.public.raw_customer_s3/customer_loyalty
+file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 /*---------------------------*/
 -- create raw_supply_chain tables
 /*---------------------------*/
 
 --> item
-CREATE OR REPLACE TABLE tb_po_prod.raw_supply_chain.item
+CREATE OR REPLACE TABLE nike_po_prod.raw_supply_chain.item
 (
 	ITEM_ID NUMBER(38,0),
 	NAME VARCHAR(16777216),
@@ -333,13 +333,13 @@ CREATE OR REPLACE TABLE tb_po_prod.raw_supply_chain.item
 );
 
 --> item
-COPY INTO tb_po_prod.raw_supply_chain.item
-FROM @tb_po_prod.public.raw_supply_chain_s3/item.csv
-file_format = (format_name = 'tb_po_prod.public.csv_ff');
+COPY INTO nike_po_prod.raw_supply_chain.item
+FROM @nike_po_prod.public.raw_supply_chain_s3/item.csv
+file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 
 --> recipe
-CREATE OR REPLACE TABLE tb_po_prod.raw_supply_chain.recipe
+CREATE OR REPLACE TABLE nike_po_prod.raw_supply_chain.recipe
 (
 	RECIPE_ID NUMBER(38,0),
 	MENU_ITEM_ID NUMBER(38,0),
@@ -349,12 +349,12 @@ CREATE OR REPLACE TABLE tb_po_prod.raw_supply_chain.recipe
 );
 
 --> recipe
-COPY INTO tb_po_prod.raw_supply_chain.recipe
-FROM @tb_po_prod.public.raw_supply_chain_s3/recipe.csv
-file_format = (format_name = 'tb_po_prod.public.csv_ff');
+COPY INTO nike_po_prod.raw_supply_chain.recipe
+FROM @nike_po_prod.public.raw_supply_chain_s3/recipe.csv
+file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 --> item_prices
-CREATE OR REPLACE TABLE tb_po_prod.raw_supply_chain.item_prices
+CREATE OR REPLACE TABLE nike_po_prod.raw_supply_chain.item_prices
 (
 	ITEM_ID NUMBER(38,0),
 	UNIT_PRICE NUMBER(38,2),
@@ -363,12 +363,12 @@ CREATE OR REPLACE TABLE tb_po_prod.raw_supply_chain.item_prices
 );
 
 --> item_prices
-COPY INTO tb_po_prod.raw_supply_chain.item_prices
-FROM @tb_po_prod.public.raw_supply_chain_s3/item_prices.csv
-file_format = (format_name = 'tb_po_prod.public.csv_ff');
+COPY INTO nike_po_prod.raw_supply_chain.item_prices
+FROM @nike_po_prod.public.raw_supply_chain_s3/item_prices.csv
+file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 --> price_elasticity
-CREATE OR REPLACE TABLE tb_po_prod.raw_supply_chain.price_elasticity
+CREATE OR REPLACE TABLE nike_po_prod.raw_supply_chain.price_elasticity
 (
 	PE_ID NUMBER(11,0),
 	MENU_ITEM_ID NUMBER(38,0),
@@ -380,12 +380,12 @@ CREATE OR REPLACE TABLE tb_po_prod.raw_supply_chain.price_elasticity
 );
 
 --> price_elasticity
-COPY INTO tb_po_prod.raw_supply_chain.price_elasticity
-FROM @tb_po_prod.public.raw_supply_chain_s3/price_elasticity.csv
-file_format = (format_name = 'tb_po_prod.public.csv_ff');
+COPY INTO nike_po_prod.raw_supply_chain.price_elasticity
+FROM @nike_po_prod.public.raw_supply_chain_s3/price_elasticity.csv
+file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 --> menu_prices
-CREATE OR REPLACE TABLE tb_po_prod.raw_supply_chain.menu_prices
+CREATE OR REPLACE TABLE nike_po_prod.raw_supply_chain.menu_prices
 (
 	MENU_ITEM_ID NUMBER(38,0),
 	SALES_PRICE_USD NUMBER(38,2),
@@ -394,15 +394,15 @@ CREATE OR REPLACE TABLE tb_po_prod.raw_supply_chain.menu_prices
 );
 
 --> menu_prices
-COPY INTO tb_po_prod.raw_supply_chain.menu_prices
-FROM @tb_po_prod.public.raw_supply_chain_s3/menu_prices.csv
-file_format = (format_name = 'tb_po_prod.public.csv_ff');
+COPY INTO nike_po_prod.raw_supply_chain.menu_prices
+FROM @nike_po_prod.public.raw_supply_chain_s3/menu_prices.csv
+file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 /*---------------------------*/
 -- create raw_safegraph table
 /*---------------------------*/
 
-create or replace TABLE tb_po_prod.raw_safegraph.core_poi_geometry (
+create or replace TABLE nike_po_prod.raw_safegraph.core_poi_geometry (
 	PLACEKEY VARCHAR(16777216),
 	PARENT_PLACEKEY VARCHAR(16777216),
 	SAFEGRAPH_BRAND_IDS VARCHAR(16777216),
@@ -436,16 +436,16 @@ create or replace TABLE tb_po_prod.raw_safegraph.core_poi_geometry (
 );
 
 --> core_poi_geometry
-COPY INTO tb_po_prod.raw_safegraph.core_poi_geometry
-FROM @tb_po_prod.public.raw_safegraph_s3/core_poi_geometry.csv
-file_format = (format_name = 'tb_po_prod.public.csv_ff');
+COPY INTO nike_po_prod.raw_safegraph.core_poi_geometry
+FROM @nike_po_prod.public.raw_safegraph_s3/core_poi_geometry.csv
+file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 /*---------------------------*/
 -- harmonized views
 /*---------------------------*/
 
 --> harmonized orders_v
-create or replace view TB_PO_PROD.HARMONIZED.ORDERS_V(
+create or replace view NIKE_PO_PROD.HARMONIZED.ORDERS_V(
 	ORDER_ID,
 	TRUCK_ID,
 	ORDER_TS,
@@ -526,25 +526,25 @@ SELECT
     oh.order_tax_amount,
     oh.order_discount_amount,
     oh.order_total
-FROM TB_PO_PROD.raw_pos.ORDER_DETAIL od
-JOIN TB_PO_PROD.raw_pos.ORDER_HEADER oh
+FROM NIKE_PO_PROD.raw_pos.ORDER_DETAIL od
+JOIN NIKE_PO_PROD.raw_pos.ORDER_HEADER oh
     ON od.order_id = oh.order_id
-JOIN TB_PO_PROD.raw_pos.TRUCK t
+JOIN NIKE_PO_PROD.raw_pos.TRUCK t
     ON oh.truck_id = t.truck_id
-JOIN TB_PO_PROD.raw_pos.MENU m
+JOIN NIKE_PO_PROD.raw_pos.MENU m
     ON od.menu_item_id = m.menu_item_id
-JOIN TB_PO_PROD.raw_pos.FRANCHISE f
+JOIN NIKE_PO_PROD.raw_pos.FRANCHISE f
     ON t.franchise_id = f.franchise_id
-JOIN TB_PO_PROD.raw_pos.LOCATION l
+JOIN NIKE_PO_PROD.raw_pos.LOCATION l
     ON oh.location_id = l.location_id
-JOIN TB_PO_PROD.raw_safegraph.CORE_POI_GEOMETRY cpg
+JOIN NIKE_PO_PROD.raw_safegraph.CORE_POI_GEOMETRY cpg
     ON cpg.placekey = l.placekey
-LEFT JOIN TB_PO_PROD.raw_customer.CUSTOMER_LOYALTY cl
+LEFT JOIN NIKE_PO_PROD.raw_customer.CUSTOMER_LOYALTY cl
     ON oh.customer_id = cl.customer_id
   );
 
 --> menu_item_cogs_and_price_v
-CREATE OR REPLACE VIEW tb_po_prod.harmonized.menu_item_cogs_and_price_v
+CREATE OR REPLACE VIEW nike_po_prod.harmonized.menu_item_cogs_and_price_v
 	AS
 SELECT DISTINCT
     r.menu_item_id,
@@ -554,19 +554,19 @@ SELECT DISTINCT
         OVER (PARTITION BY r.menu_item_id, ip.start_date, ip.end_date)
             AS cost_of_menu_item_usd,
     mp.sales_price_usd
-FROM tb_po_prod.raw_supply_chain.ITEM i
-JOIN tb_po_prod.raw_supply_chain.RECIPE r
+FROM nike_po_prod.raw_supply_chain.ITEM i
+JOIN nike_po_prod.raw_supply_chain.RECIPE r
     ON i.item_id = r.item_id
-JOIN tb_po_prod.raw_supply_chain.ITEM_PRICES ip
+JOIN nike_po_prod.raw_supply_chain.ITEM_PRICES ip
     ON ip.item_id = r.item_id
-JOIN tb_po_prod.raw_supply_chain.MENU_PRICES mp
+JOIN nike_po_prod.raw_supply_chain.MENU_PRICES mp
     ON mp.menu_item_id = r.menu_item_id
     AND mp.start_date = ip.start_date
 ORDER BY r.menu_item_id, ip.start_date
   ;
 
 --> order_item_cost_v
-CREATE OR REPLACE VIEW tb_po_prod.harmonized.order_item_cost_v
+CREATE OR REPLACE VIEW nike_po_prod.harmonized.order_item_cost_v
 	AS
 WITH menu_item_cogs_and_price_v AS
 (
@@ -576,15 +576,15 @@ WITH menu_item_cogs_and_price_v AS
         ip.end_date,
         SUM(ip.unit_price * r.unit_quantity) OVER (PARTITION BY r.menu_item_id, ip.start_date, ip.end_date) AS cost_of_goods_usd,
         mp.sales_price_usd AS base_price
-    FROM tb_po_prod.raw_supply_chain.item i
-    JOIN tb_po_prod.raw_supply_chain.recipe r
+    FROM nike_po_prod.raw_supply_chain.item i
+    JOIN nike_po_prod.raw_supply_chain.recipe r
         ON i.item_id = r.item_id
-    JOIN tb_po_prod.raw_supply_chain.item_prices ip
+    JOIN nike_po_prod.raw_supply_chain.item_prices ip
         ON ip.item_id = r.item_id
-    JOIN tb_po_prod.raw_supply_chain.menu_prices mp
+    JOIN nike_po_prod.raw_supply_chain.menu_prices mp
         ON mp.menu_item_id = r.menu_item_id
         AND mp.start_date = ip.start_date
-    JOIN tb_po_prod.raw_pos.menu m
+    JOIN nike_po_prod.raw_pos.menu m
         ON m.menu_item_id = mp.menu_item_id
     WHERE m.item_category <> 'Extra'
 ),
@@ -601,8 +601,8 @@ order_item_total AS
         oh.order_amount,
         m.cost_of_goods_usd * od.quantity AS order_item_cog,
         SUM(order_item_cog) OVER (PARTITION BY oh.order_id) AS order_cog
-    FROM tb_po_prod.raw_pos.order_header oh
-    JOIN tb_po_prod.raw_pos.order_detail od
+    FROM nike_po_prod.raw_pos.order_header oh
+    JOIN nike_po_prod.raw_pos.order_detail od
         ON oh.order_id = od.order_id
     JOIN menu_item_cogs_and_price_v m
         ON od.menu_item_id = m.menu_item_id
@@ -625,7 +625,7 @@ FROM order_item_total oi
   ;
 
 --> menu_item_aggregate_dt
-CREATE OR REPLACE TABLE TB_PO_PROD.HARMONIZED.MENU_ITEM_AGGREGATE_DT (
+CREATE OR REPLACE TABLE NIKE_PO_PROD.HARMONIZED.MENU_ITEM_AGGREGATE_DT (
 	DATE DATE,
 	DAY_OF_WEEK NUMBER(2,0),
 	MENU_TYPE_ID NUMBER(38,0),
@@ -641,16 +641,16 @@ CREATE OR REPLACE TABLE TB_PO_PROD.HARMONIZED.MENU_ITEM_AGGREGATE_DT (
 );
 
 --> menu_item_aggregate_dt
-COPY INTO tb_po_prod.harmonized.menu_item_aggregate_dt
-FROM @tb_po_prod.public.harmonized_s3/menu_item_aggregate_dt
-file_format = (format_name = 'tb_po_prod.public.csv_ff');
+COPY INTO nike_po_prod.harmonized.menu_item_aggregate_dt
+FROM @nike_po_prod.public.harmonized_s3/menu_item_aggregate_dt
+file_format = (format_name = 'nike_po_prod.public.csv_ff');
 
 /*---------------------------*/
 -- analytics views
 /*---------------------------*/
 
 --> orders_v
-create or replace view TB_PO_PROD.ANALYTICS.ORDERS_V(
+create or replace view NIKE_PO_PROD.ANALYTICS.ORDERS_V(
 	DATE,
 	ORDER_ID,
 	TRUCK_ID,
@@ -693,24 +693,24 @@ create or replace view TB_PO_PROD.ANALYTICS.ORDERS_V(
 ) as (
 
 
-SELECT DATE(o.order_ts) AS date, * FROM TB_PO_PROD.harmonized.ORDERS_V o
+SELECT DATE(o.order_ts) AS date, * FROM NIKE_PO_PROD.harmonized.ORDERS_V o
   );
 
 --> menu_item_aggregate_v
-CREATE OR REPLACE VIEW tb_po_prod.analytics.menu_item_aggregate_v
+CREATE OR REPLACE VIEW nike_po_prod.analytics.menu_item_aggregate_v
 	AS
 SELECT * RENAME sale_price AS price
-FROM tb_po_prod.harmonized.menu_item_aggregate_dt; -- should be menu_item_aggregate_dt
+FROM nike_po_prod.harmonized.menu_item_aggregate_dt; -- should be menu_item_aggregate_dt
 
 
 
 --> menu_item_cogs_and_price_v
-CREATE OR REPLACE VIEW tb_po_prod.analytics.menu_item_cogs_and_price_v
+CREATE OR REPLACE VIEW nike_po_prod.analytics.menu_item_cogs_and_price_v
 	AS
-SELECT * FROM tb_po_prod.harmonized.menu_item_cogs_and_price_v;
+SELECT * FROM nike_po_prod.harmonized.menu_item_cogs_and_price_v;
 
 --> order_item_cost_agg_v
-CREATE OR REPLACE VIEW tb_po_prod.analytics.order_item_cost_agg_v
+CREATE OR REPLACE VIEW nike_po_prod.analytics.order_item_cost_agg_v
 	AS
 SELECT
     year,
@@ -732,7 +732,7 @@ FROM
             SUM(oic1.order_amt_wo_item) / SUM(oic1.quantity) AS avg_revenue_wo_item,
             SUM(oic1.order_cog_wo_item) / SUM(oic1.quantity) AS avg_cost_wo_item,
             (SUM(oic1.order_amt_wo_item) - SUM(oic1.order_cog_wo_item)) /SUM(oic1.quantity) AS avg_profit_wo_item
-        FROM tb_po_prod.harmonized.order_item_cost_v oic1
+        FROM nike_po_prod.harmonized.order_item_cost_v oic1
         GROUP BY oic1.menu_item_id, YEAR(oic1.date), MONTH(oic1.date)
     )
 UNION
@@ -754,14 +754,14 @@ UNION
             SELECT DISTINCT
                 oh.menu_item_id,
                 DATE(oh.order_ts) AS date
-            FROM tb_po_prod.harmonized.orders_v oh
+            FROM nike_po_prod.harmonized.orders_v oh
         ) oic2
     JOIN
         (
         SELECT
             MONTH(MAX(DATE(oh.order_ts))) AS max_month,
             YEAR(MAX(DATE(oh.order_ts))) AS max_year
-        FROM tb_po_prod.harmonized.orders_v oh
+        FROM nike_po_prod.harmonized.orders_v oh
         ) max_date
 ON YEAR(oic2.date) = max_date.max_year AND MONTH(oic2.date) = max_date.max_month
     )
@@ -772,7 +772,7 @@ ORDER BY oic.menu_item_id, oic.year, oic.month)avg_r_c_wo_item;
 /*---------------------------*/
 -- scale down warehouse after load
 /*---------------------------*/
-ALTER WAREHOUSE tb_po_ds_wh SET WAREHOUSE_SIZE = 'Large';
+ALTER WAREHOUSE nike_po_ds_wh SET WAREHOUSE_SIZE = 'Large';
 
 
 /*---------------------------*/

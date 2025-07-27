@@ -1,9 +1,56 @@
 [![Snowflake - Certified](https://img.shields.io/badge/Snowflake-Certified-2ea44f?style=for-the-badge&logo=snowflake)](https://developers.snowflake.com/solutions/)
 
-# Price Optimization using Snowflake Notebooks and Streamlit in Snowflake
+# Nike Price Optimization and Customer Reviews Analytics using Snowflake Cortex
 
 ## Overview
-Tasty Bytes is one of the largest food truck networks in the world with localized menu options spread across 15 food truck brands globally. In this Quickstart, we explore how Tasty Bytes finds the right prices for their menu items to maximize profitability while maintaining customer satisfaction.
+Nike is one of the world's largest athletic footwear and apparel companies with diverse product lines spread across 15 specialized Nike brands globally. This project demonstrates two powerful use cases:
+
+1. **Price Optimization** - Using machine learning to find the right prices for Nike products to maximize profitability while maintaining customer satisfaction
+2. **Customer Reviews Analytics** - Leveraging Snowflake Cortex LLM functions to analyze customer sentiment, extract insights, and inform pricing strategies
+
+## Key Features
+
+### 🔍 **Price Optimization**
+- ML-driven price recommendations for Nike products
+- Product demand forecasting based on pricing changes
+- Interactive Streamlit application for price management
+- Real-time profit impact analysis
+
+### 💬 **Customer Reviews Analytics with Snowflake Cortex**
+- **Sentiment Analysis** using Cortex SENTIMENT function
+- **Multi-language Support** with Cortex TRANSLATE function  
+- **Intelligent Insights** using Cortex COMPLETE function for recommendation likelihood
+- **Aspect-based Analysis** to understand customer feedback on comfort, style, quality, etc.
+- **Integration with Pricing** - sentiment data influences price optimization strategies
+
+### 🖼️ **Enhanced Product Visualization**
+- High-quality Nike product images from official sources
+- Interactive product galleries in Streamlit
+- Visual sentiment indicators alongside pricing data
+
+## Project Structure
+
+```
+├── notebooks/
+│   ├── 0_start_here.ipynb                    # Price optimization notebook
+│   └── nike_product_review_analytics.ipynb   # Cortex-powered review analytics
+├── scripts/
+│   ├── application_monthly_pricing_app.py    # Streamlit app with reviews integration
+│   ├── csv/                                  # Nike product datasets
+│   ├── sql/                                  # Database setup scripts
+│   └── generate_nike_reviews.py              # Sample review data generator
+├── setup/
+│   ├── nike_reviews_setup.sql                # Customer reviews database setup
+│   └── tb_po_setup.sql                       # Price optimization database setup
+└── nike_product_images.json                  # Product image mappings
+```
 
 ## Step-By-Step Guide
-For prerequisites, environment setup, step-by-step guide and instructions, please refer to the [QuickStart Guide](https://quickstarts.snowflake.com/guide/tasty_bytes_price_optimization_using_snowflake_notebooks_and_streamlit/index.html?index=..%2F..index#0)
+For prerequisites, environment setup, step-by-step guide and instructions, please refer to the [QuickStart Guide](https://quickstarts.snowflake.com/guide/nike_price_optimization_using_snowflake_notebooks_and_streamlit/index.html?index=..%2F..index#0).
+
+## New: Customer Reviews Analytics Setup
+
+1. **Database Setup**: Run `setup/nike_reviews_setup.sql` to create the reviews database
+2. **Sample Data**: Use `scripts/generate_nike_reviews.py` to generate sample review data
+3. **Analytics Notebook**: Open `notebooks/nike_product_review_analytics.ipynb` for Cortex-powered analysis
+4. **Streamlit Integration**: The pricing app now shows customer sentiment alongside pricing data

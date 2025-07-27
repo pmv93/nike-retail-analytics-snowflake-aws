@@ -6,9 +6,9 @@ from snowflake.ml.registry.registry import Registry
 import snowflake.snowpark.types as T
 
 # Write directly to the app
-st.title("Monthly Pricing App :truck:")
+st.title("Monthly Pricing App :athletic_shoe:")
 st.write(
-    """Navigate to a food truck brand and menu item. Set the day-of-week 
+    """Navigate to a Nike product line and product. Set the day-of-week 
     pricing for the upcoming month. Click **"Update Prices"** to 
     submit finalized pricing.
     """
@@ -21,10 +21,93 @@ session = get_active_session()
 df = session.table("pricing").with_column("comment", F.lit(""))
 
 # Dynamic filters
-brand = st.selectbox("Brand:", df.select("brand").distinct())
+brand = st.selectbox("Nike Product Line:", df.select("brand").distinct())
 item = st.selectbox(
-    "Item:", df.filter(F.col("brand") == brand).select("item").distinct()
+    "Product:", df.filter(F.col("brand") == brand).select("item").distinct()
 )
+
+# Get product image URL and review sentiment if available
+try:
+    product_data = df.filter((F.col("brand") == brand) & (F.col("item") == item))
+    if hasattr(product_data, 'select') and 'product_image_url' in [col.name.lower() for col in product_data.schema.fields]:
+        image_url = product_data.select("product_image_url").first()
+        if image_url and image_url[0]:
+            col1, col2, col3 = st.columns([1, 1, 1])
+            with col1:
+                st.image(image_url[0], width=200, caption=f"{brand} - {item}")
+            with col2:
+                st.markdown(f"### {item}")
+                st.markdown(f"**Brand:** {brand}")
+            with col3:
+                # Try to get review sentiment data
+                try:
+                    session = get_active_session()
+                    sentiment_query = f"""
+                    SELECT 
+                        avg_sentiment,
+                        avg_rating,
+                        total_reviews,
+                        recommendation_rate,
+                        sentiment_category
+                    FROM nike_reviews.analytics.product_sentiment_pricing_v 
+                    WHERE product_name = '{item}' AND brand_name = '{brand}'
+                    """
+                    sentiment_data = session.sql(sentiment_query).collect()
+                    if sentiment_data:
+                        row = sentiment_data[0]
+                        st.markdown("**Customer Reviews:**")
+                        st.metric("Avg Rating", f"{row[1]:.1f}/5.0" if row[1] else "N/A")
+                        st.metric("Total Reviews", row[2] if row[2] else 0)
+                        
+                        sentiment_score = row[0] if row[0] else 0
+                        sentiment_color = "🟢" if sentiment_score > 0.3 else "🔴" if sentiment_score < -0.3 else "🟡"
+                        st.write(f"Sentiment: {sentiment_color} {row[4] if row[4] else 'NEUTRAL'}")
+                        
+                        if row[3]:
+                            st.write(f"Recommendation Rate: {row[3]:.1f}%")
+                    else:
+                        st.markdown("**Customer Reviews:** No data available")
+                except Exception:
+                    st.markdown("**Customer Reviews:** Not available")
+        else:
+            # No image available
+            col1, col2 = st.columns([1, 1])
+            with col1:
+                st.markdown(f"### {item}")
+                st.markdown(f"**Brand:** {brand}")
+            with col2:
+                # Show review sentiment even without image
+                try:
+                    session = get_active_session()
+                    sentiment_query = f"""
+                    SELECT 
+                        avg_sentiment,
+                        avg_rating,
+                        total_reviews,
+                        recommendation_rate,
+                        sentiment_category
+                    FROM nike_reviews.analytics.product_sentiment_pricing_v 
+                    WHERE product_name = '{item}' AND brand_name = '{brand}'
+                    """
+                    sentiment_data = session.sql(sentiment_query).collect()
+                    if sentiment_data:
+                        row = sentiment_data[0]
+                        st.markdown("**Customer Reviews:**")
+                        st.metric("Avg Rating", f"{row[1]:.1f}/5.0" if row[1] else "N/A")
+                        st.metric("Total Reviews", row[2] if row[2] else 0)
+                        
+                        sentiment_score = row[0] if row[0] else 0
+                        sentiment_color = "🟢" if sentiment_score > 0.3 else "🔴" if sentiment_score < -0.3 else "🟡"
+                        st.write(f"Sentiment: {sentiment_color} {row[4] if row[4] else 'NEUTRAL'}")
+                        
+                        if row[3]:
+                            st.write(f"Recommendation Rate: {row[3]:.1f}%")
+                except Exception:
+                    st.markdown("**Customer Reviews:** Not available")
+except Exception as e:
+    # If image loading fails, continue without images
+    st.markdown(f"### {item}")
+    st.markdown(f"**Brand:** {brand}")
 
 # Provide instructions for updating pricing and using recommendations
 st.write(
@@ -42,7 +125,7 @@ set_prices = session.create_dataframe(
 )
 
 # Add a subheader
-st.subheader("Forecasted Item Demand Based on Price")
+st.subheader("Forecasted Product Demand Based on Price")
 
 # Define model input features
 feature_cols = [
