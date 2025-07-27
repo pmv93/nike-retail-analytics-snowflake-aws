@@ -721,6 +721,11 @@ SELECT * RENAME sale_price AS price
 FROM nike_po_prod.harmonized.menu_item_aggregate_dt; -- should be menu_item_aggregate_dt
 
 
+--> menu_item_aggregate_dt
+CREATE OR REPLACE VIEW nike_po_prod.analytics.menu_item_aggregate_dt
+        AS
+SELECT * FROM nike_po_prod.harmonized.menu_item_aggregate_dt;
+
 
 --> menu_item_cogs_and_price_v
 CREATE OR REPLACE VIEW nike_po_prod.analytics.menu_item_cogs_and_price_v
@@ -901,7 +906,7 @@ CREATE OR REPLACE TABLE nike_reviews.raw_support.product_reviews
  • harmonized view creation for reviews
 --*/
 
--- product_reviews_v view
+-- Updated product_reviews_v view with Cortex AI functions
 CREATE OR REPLACE VIEW nike_reviews.harmonized.product_reviews_v
     AS
 SELECT DISTINCT
@@ -925,7 +930,18 @@ SELECT DISTINCT
     s.city,
     s.region,
     s.country,
-    o.order_channel
+    o.order_channel,
+    -- Add Cortex AI functions for translation and sentiment
+    CASE 
+        WHEN r.language = 'en' THEN r.review_text
+        ELSE SNOWFLAKE.CORTEX.TRANSLATE(r.review_text, r.language, 'en')
+    END AS translated_review,
+    SNOWFLAKE.CORTEX.SENTIMENT(
+        CASE 
+            WHEN r.language = 'en' THEN r.review_text
+            ELSE SNOWFLAKE.CORTEX.TRANSLATE(r.review_text, r.language, 'en')
+        END
+    ) AS sentiment_score
 FROM nike_reviews.raw_support.product_reviews r
 JOIN nike_reviews.raw_pos.products p
     ON p.product_id = r.product_id
@@ -933,6 +949,7 @@ LEFT JOIN nike_reviews.raw_pos.orders o
     ON o.order_id = r.order_id
 LEFT JOIN nike_reviews.raw_pos.stores s
     ON s.store_id = o.store_id;
+
 
 /*--
  • analytics view creation for reviews
