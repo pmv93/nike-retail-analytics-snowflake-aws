@@ -2,19 +2,20 @@
 Nike Product Pricer App - Streamlit Application
 ===============================================
 
-Required Packages:
-- pandas>=1.5.0
-- numpy>=1.21.0  
-- plotly>=5.11.0
-- matplotlib>=3.5.0
-- seaborn>=0.11.0
-- wordcloud>=1.8.0
-- streamlit>=1.25.0
-- snowflake-snowpark-python>=1.0.0
-- snowflake-ml-python>=1.0.0
+Required Packages (Compatible versions for Snowflake Python 3.10 runtime):
+- pandas==2.0.3
+- numpy==1.24.3  
+- plotly==5.17.0
+- matplotlib==3.7.2
+- seaborn==0.12.2
+- wordcloud==1.9.2
+- streamlit (built-in)
+- snowflake-snowpark-python (built-in)
+- snowflake-ml-python==1.4.0
 
 Note: Add these packages via Snowflake UI when deploying the Streamlit app:
 Projects → Streamlit → Package dropdown → Add packages
+Use the exact versions listed above to avoid compatibility issues.
 """
 
 import streamlit as st
