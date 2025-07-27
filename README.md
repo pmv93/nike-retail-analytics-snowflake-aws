@@ -1,106 +1,166 @@
-[![Snowflake - Certified](https://img.shields.io/badge/Snowflake-Certified-2ea44f?style=for-the-badge&logo=snowflake)](https://developers.snowflake.com/solutions/)
+# Nike Retail Analytics Platform
+## Price Optimization & Customer Sentiment Analysis using Snowflake Cortex
 
-# Nike Price Optimization and Customer Reviews Analytics using Snowflake Cortex
+![Nike Analytics](https://img.shields.io/badge/Nike-Analytics-orange.svg) ![Snowflake](https://img.shields.io/badge/Snowflake-Cortex-blue.svg) ![Streamlit](https://img.shields.io/badge/Streamlit-App-red.svg)
 
-## Overview
-Nike is one of the world's largest athletic footwear and apparel companies with diverse product lines spread across 15 specialized Nike brands globally. This project demonstrates two powerful use cases:
+### 🎯 **Project Overview**
 
-1. **Price Optimization** - Using machine learning to find the right prices for Nike products to maximize profitability while maintaining customer satisfaction
-2. **Customer Reviews Analytics** - Leveraging Snowflake Cortex LLM functions to analyze customer sentiment, extract insights, and inform pricing strategies
+This comprehensive analytics platform demonstrates advanced retail analytics for Nike products with **pure Nike data end-to-end**, combining:
 
-## Key Features
+- **🔍 Price Optimization** - ML-driven pricing recommendations using demand forecasting
+- **🧠 Customer Sentiment Analysis** - AI-powered review analysis using Snowflake Cortex LLM functions  
+- **📊 Interactive Dashboards** - Visual product selection with real-time insights
+- **🎨 Enhanced User Experience** - Product images, sentiment visualization, and intelligent recommendations
 
-### 🔍 **Price Optimization**
-- ML-driven price recommendations for Nike products
-- Product demand forecasting based on pricing changes
-- Interactive Streamlit application for price management
-- Real-time profit impact analysis
+### 🏆 **Nike Products in Your Database**
 
-### 💬 **Customer Reviews Analytics with Snowflake Cortex**
-- **Sentiment Analysis** using Cortex SENTIMENT function
-- **Multi-language Support** with Cortex TRANSLATE function  
-- **Intelligent Insights** using Cortex COMPLETE function for recommendation likelihood
-- **Aspect-based Analysis** to understand customer feedback on comfort, style, quality, etc.
-- **Integration with Pricing** - sentiment data influences price optimization strategies
+Your analytics platform includes actual Nike products:
+- **Nike Air Force 1 07** - Classic lifestyle sneakers
+- **Nike Air Max 90** - Iconic running heritage  
+- **Nike Air Zoom Pegasus 40** - Performance running shoes
+- **Nike Metcon 9** - Cross-training excellence
+- **Nike Air Jordan 1 Low** - Basketball legend
+- **Nike Tech Fleece Hoodie** - Premium athleisure
+- **Nike Dunk Low** - Streetwear essential
 
-### 🖼️ **Enhanced Product Visualization**
-- High-quality Nike product images from official sources
-- Interactive product galleries in Streamlit
-- Visual sentiment indicators alongside pricing data
+---
 
-## Project Structure
+## 🚀 **ONE-SCRIPT SETUP PROCESS**
 
+### **📋 Prerequisites**
+
+| Requirement | Details |
+|-------------|---------|
+| **Snowflake Account** | Enterprise edition recommended |
+| **Snowflake Role** | `ACCOUNTADMIN` or sufficient privileges |
+| **Browser** | Modern browser for Snowflake UI |
+| **Git Repository** | This repository cloned locally |
+
+### **⚡ Step-by-Step Setup**
+
+#### **Step 1: Run the Setup Script**
+```sql
+-- Run in Snowflake SQL Worksheet: scripts/sql/nike_po_setup.sql
+-- The script will create everything and then PAUSE with upload instructions
+-- ✅ nike_po_prod database (price optimization)
+-- ✅ nike_reviews database (customer sentiment)  
+-- ✅ Single nike_data_stage for ALL file uploads
+-- ✅ 55+ sample Nike product reviews
+-- ✅ All database infrastructure
 ```
-├── notebooks/
-│   ├── 0_start_here.ipynb                    # Price optimization notebook
-│   └── nike_product_review_analytics.ipynb   # Cortex-powered review analytics
-├── scripts/
-│   ├── application_monthly_pricing_app.py    # Streamlit app with reviews integration
-│   ├── csv/                                  # Nike product datasets
-│   ├── sql/                                  # Database setup scripts
-│   └── generate_nike_reviews.py              # Sample review data generator
-├── setup/
-│   ├── nike_reviews_setup.sql                # Customer reviews database setup
-│   └── nike_po_setup.sql                     # Price optimization database setup
-└── nike_product_images.json                  # Product image mappings
-```
 
-## Attribution
+#### **Step 2: Upload Files When Prompted**
 
-This project is adapted from the following Snowflake quickstart guides:
-- [Tasty Bytes Price Optimization using Snowflake Notebooks and Streamlit](https://quickstarts.snowflake.com/guide/tasty_bytes_price_optimization_using_snowflake_notebooks_and_streamlit/index.html?index=..%2F..index#0)
-- [Customer Reviews Analytics using Snowflake Cortex](https://quickstarts.snowflake.com/guide/customer_reviews_analytics_using_snowflake_cortex/index.html?index=..%2F..index#0)
+The script will **automatically pause** with prominent instructions:
 
-The original guides have been significantly modified and enhanced to focus on Nike retail analytics with integrated customer sentiment analysis and visual product selection capabilities.
+**"🛑 STOP HERE! UPLOAD YOUR CSV FILES BEFORE CONTINUING 🛑"**
 
-## Step-By-Step Guide
-For prerequisites, environment setup, step-by-step guide and instructions, please refer to the comprehensive [Nike Retail Project README](Nike_Retail_Project_README.ipynb).
+### **📁 Upload Instructions - FLAT FILE STRUCTURE**
 
-## 🗃️ **Nike Data Upload Instructions**
+All CSV files are now in ONE flat folder for maximum simplicity!
 
-**IMPORTANT**: Before running the SQL scripts, you need to upload your Nike CSV data files to Snowflake stages:
-
-### **📁 Single Stage Upload - Much Simpler!**
-
-After running `scripts/sql/nike_po_setup.sql`, upload ALL your Nike CSV files to ONE stage:
-
-**Single Stage:** `nike_data_stage` - Upload your entire `scripts/csv/` folder structure
-
-### **💻 Upload Methods**
+**Single Stage:** `nike_data_stage` - All CSV files are in `scripts/csv/` folder
 
 #### **Option 1: Snowflake Web UI (Recommended)**
 1. In Snowflake UI: **Databases** → **NIKE_PO_PROD** → **Schemas** → **PUBLIC** → **Stages**
 2. Click **NIKE_DATA_STAGE**
-3. Upload your **entire** `scripts/csv/` folder (maintains folder structure automatically)
+3. Upload all 10 CSV files directly from the `scripts/csv/` folder (no subfolders needed!)
 
 #### **Option 2: SnowSQL Command Line**
 ```bash
-PUT file://scripts/csv/* @nike_po_prod.public.nike_data_stage auto_compress=false recursive=true;
+PUT file://scripts/csv/*.csv @nike_po_prod.public.nike_data_stage;
 ```
 
-**That's it!** One stage, one upload command. The folder structure is preserved automatically.
+#### **📋 Files to Upload (10 files in scripts/csv/):**
+- `item.csv` - Nike product details
+- `recipe.csv` - Product composition data
+- `item_prices.csv` - Pricing information
+- `menu_prices.csv` - Menu pricing data
+- `price_elasticity.csv` - Demand elasticity data
+- `core_poi_geometry.csv` - Geographic data
+- `menu_item_aggregate_dt.csv` - Daily transaction aggregates
+- `menu_item_cogs_and_price_v.csv` - Cost and pricing view
+- `menu_item_aggregate_v.csv` - Analytics aggregates
+- `order_item_cost_agg_v.csv` - Order cost aggregations
 
-## 📋 **One-Script Execution Process**
+#### **Step 3: Continue the Script**
+After uploading, continue running the same script - it will automatically load all data into tables and complete the setup.
 
-1. **Run Script**: Execute `scripts/sql/nike_po_setup.sql` in Snowflake SQL Worksheet
-2. **Upload When Prompted**: Script will pause with clear instructions to upload CSV files
-3. **Continue Script**: After uploading, continue running the same script to completion
-4. **Deploy Apps**: Upload notebooks and deploy Streamlit apps
+---
 
-**That's it!** One script run with a pause for file upload.
+## 📱 **Application Deployment**
 
-## 🎯 **Single Setup Script - Run Once!**
+### **🖥️ Deploy Streamlit App**
+1. **In Snowflake UI:** Projects → Streamlit → "+ Streamlit App"
+2. **Choose:** "From Git Repository"
+3. **Repository URL:** `https://github.com/pmv93/nike-retail-analytics-snowflake-aws`
+4. **Main File:** `scripts/nike_product_pricer_app.py`
+5. **Requirements File:** `requirements.txt`
+6. **Click:** "Create"
 
-The `nike_po_setup.sql` script includes everything and only needs to be run once:
-- ✅ **Price Optimization Database** (`nike_po_prod`) with all Nike product data
-- ✅ **Customer Reviews Database** (`nike_reviews`) with Cortex AI capabilities  
-- ✅ **Sample Review Data** (55+ realistic Nike product reviews in multiple languages)
-- ✅ **Complete Analytics Views** for both pricing and sentiment analysis
-- ✅ **Built-in Upload Instructions** - script pauses to guide you through file upload
+### **📓 Upload Analytics Notebooks**
+1. **In Snowflake UI:** Projects → Notebooks → "+ Notebook" → "Import .ipynb file"
+2. **Upload Files:**
+   - `notebooks/0_start_here.ipynb` (Price Optimization with ML)
+   - `notebooks/nike_product_review_analytics.ipynb` (Cortex Sentiment Analysis)
+3. **Run:** The sentiment analytics notebook to create additional aggregated tables
 
-## Customer Reviews Analytics Setup
+---
 
-1. **Database Setup**: Already included in `scripts/sql/nike_po_setup.sql`
-2. **Sample Data**: Already included in the main setup script
-3. **Analytics Notebook**: Open `notebooks/nike_product_review_analytics.ipynb` for Cortex-powered analysis
-4. **Streamlit Integration**: The pricing app now shows customer sentiment alongside pricing data
+## 📈 **What You'll Get**
+
+After complete deployment:
+
+✅ **2 Complete Databases**: `nike_po_prod` + `nike_reviews` with **pure Nike data**  
+✅ **Visual Nike Product Pricer**: Interactive app with product images and AI insights  
+✅ **ML-Powered Analytics**: Price optimization + sentiment analysis workflows  
+✅ **55+ Nike Product Reviews**: Multi-language customer feedback (English, Spanish, French)  
+✅ **Snowflake Cortex Integration**: SENTIMENT, TRANSLATE, COMPLETE functions  
+
+---
+
+## 🎯 **Key Files Reference**
+
+### **🗂️ Essential Setup Files**
+- **`scripts/sql/nike_po_setup.sql`** - Single comprehensive setup script
+- **`scripts/csv/*.csv`** - 10 Nike data files (flat structure)
+- **`requirements.txt`** - Python dependencies for Streamlit app
+
+### **📱 Application Files**  
+- **`scripts/nike_product_pricer_app.py`** - Main Streamlit application
+- **`notebooks/0_start_here.ipynb`** - Price optimization notebook
+- **`notebooks/nike_product_review_analytics.ipynb`** - Sentiment analysis notebook
+
+### **📖 Documentation**
+- **`Nike_Retail_Project_README.ipynb`** - Comprehensive setup guide (detailed version)
+
+---
+
+## 🎉 **Setup Evolution - Maximum Simplicity**
+
+**Original:** 3 separate SQL scripts + complex folder structure  
+**Previous:** 1 script run twice + subfolders  
+**NOW:** 1 script + 1 stage + 10 flat files  
+
+**Process:** Start script → Upload 10 files when prompted → Script completes → Deploy apps
+
+**ABSOLUTE MAXIMUM SIMPLICITY ACHIEVED!** 🚀
+
+---
+
+## 🔧 **Troubleshooting**
+
+**Common Issues:**
+- **File Upload:** Ensure all 10 CSV files are uploaded to nike_data_stage
+- **Permissions:** Use ACCOUNTADMIN role or ensure sufficient privileges
+- **Script Pause:** Look for the prominent "STOP HERE" message in the SQL output
+
+**Need Help?** Check the detailed `Nike_Retail_Project_README.ipynb` for comprehensive guidance.
+
+---
+
+## 📜 **Attribution**
+
+This project is adapted from Snowflake quickstart guides:
+- [Tasty Bytes Price Optimization](https://quickstarts.snowflake.com/guide/tasty_bytes_price_optimization_using_snowflake_notebooks_and_streamlit/)
+- [Customer Reviews Analytics using Snowflake Cortex](https://quickstarts.snowflake.com/guide/customer_reviews_analytics_using_snowflake_cortex/)
