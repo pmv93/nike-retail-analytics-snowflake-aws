@@ -45,10 +45,18 @@ Nike is one of the world's largest athletic footwear and apparel companies with 
 └── nike_product_images.json                  # Product image mappings
 ```
 
-## Step-By-Step Guide
-For prerequisites, environment setup, step-by-step guide and instructions, please refer to the [QuickStart Guide](https://quickstarts.snowflake.com/guide/nike_price_optimization_using_snowflake_notebooks_and_streamlit/index.html?index=..%2F..index#0).
+## Attribution
 
-## New: Customer Reviews Analytics Setup
+This project is adapted from the following Snowflake quickstart guides:
+- [Tasty Bytes Price Optimization using Snowflake Notebooks and Streamlit](https://quickstarts.snowflake.com/guide/tasty_bytes_price_optimization_using_snowflake_notebooks_and_streamlit/index.html?index=..%2F..index#0)
+- [Customer Reviews Analytics using Snowflake Cortex](https://quickstarts.snowflake.com/guide/customer_reviews_analytics_using_snowflake_cortex/index.html?index=..%2F..index#0)
+
+The original guides have been significantly modified and enhanced to focus on Nike retail analytics with integrated customer sentiment analysis and visual product selection capabilities.
+
+## Step-By-Step Guide
+For prerequisites, environment setup, step-by-step guide and instructions, please refer to the comprehensive [Nike Retail Project README](Nike_Retail_Project_README.ipynb).
+
+## Customer Reviews Analytics Setup
 
 1. **Database Setup**: Run `setup/nike_reviews_setup.sql` to create the reviews database
 2. **Sample Data**: Use `scripts/generate_nike_reviews.py` to generate sample review data
