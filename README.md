@@ -86,7 +86,7 @@ After uploading, continue running the same script - it will automatically load a
 
 ### **🖥️ Deploy Streamlit App**
 
-**Prerequisites:** API Integration is automatically created by the setup script.
+**Prerequisites:** API Integration is automatically created by the setup script (requires ACCOUNTADMIN role at the end).
 
 1. **In Snowflake UI:** Projects → Streamlit → "+ Streamlit App"
 2. **Choose:** "From Git Repository"
@@ -103,7 +103,7 @@ After uploading, continue running the same script - it will automatically load a
 4. **Click:** "Create"
 
 **Package Management:** Required packages with compatible versions are listed in comments at the top of the Streamlit app file. When creating the app in Snowflake, add them via the "Packages" dropdown: pandas==2.0.3, numpy==1.24.3, plotly==5.17.0, matplotlib==3.7.2, seaborn==0.12.2, wordcloud==1.9.2, snowflake-ml-python==1.4.0. Note: streamlit and snowflake-snowpark-python are built-in.
-**Note:** The `nike_github_api_integration` is created automatically by the setup script to enable Git repository access.
+**Note:** The `nike_github_api_integration` is created automatically by the setup script to enable Git repository access (requires ACCOUNTADMIN role for API integration creation).
 ### **📓 Upload Analytics Notebooks**
 1. **In Snowflake UI:** Projects → Notebooks → "+ Notebook" → "Import .ipynb file"
 2. **Upload Files:**

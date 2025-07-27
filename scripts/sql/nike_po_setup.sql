@@ -1098,29 +1098,6 @@ ALTER WAREHOUSE nike_ds_wh SET WAREHOUSE_SIZE = 'Medium';
 
 SELECT 'Nike Analytics Platform setup is now complete! Both price optimization and customer reviews databases are ready.' AS note;
 
-/***********************************************************************************************************
-**
- * 🔗 GITHUB API INTEGRATION SETUP
- ***********************************************************************************************************
-**
- * Create API integration to enable Streamlit app deployment from Git repository
- * This allows Snowflake to access your GitHub repository for app deployment
- ***********************************************************************************************************
-**/
-
--- Create GitHub API Integration for Streamlit app deployment
-CREATE OR REPLACE API INTEGRATION nike_github_api_integration
-  API_PROVIDER = git_https_api
-  API_ALLOWED_PREFIXES = ('https://github.com/')
-  ENABLED = TRUE
-  COMMENT = 'API integration for Nike retail analytics Git repository access';
-
--- Grant usage to data scientist role
-GRANT USAGE ON INTEGRATION nike_github_api_integration TO ROLE nike_po_data_scientist;
-
-SELECT 'GitHub API Integration created! You can now deploy Streamlit apps from Git.' AS integration_status;
-
-
 -- Create the missing product_sentiment_pricing_v view that combines sentiment with pricing data
 -- Fix the product_sentiment_pricing_v view to match Streamlit app expectations
 CREATE OR REPLACE VIEW nike_reviews.analytics.product_sentiment_pricing_v AS
@@ -1162,3 +1139,48 @@ LEFT JOIN nike_reviews.raw_pos.products p ON s.product_id = p.product_id;
 GRANT ALL ON VIEW nike_reviews.analytics.product_sentiment_pricing_v TO ROLE nike_po_data_scientist;
 
 SELECT 'Product sentiment pricing view created successfully!' AS view_status;
+
+
+/***********************************************************************************************************
+**
+ * 🔗 GITHUB API INTEGRATION SETUP (REQUIRES ACCOUNTADMIN)
+ ***********************************************************************************************************
+**
+ * Create API integration to enable Streamlit app deployment from Git repository
+ * This allows Snowflake to access your GitHub repository for app deployment
+ * 
+ * NOTE: API integrations require ACCOUNTADMIN privileges
+ ***********************************************************************************************************
+**/
+
+-- Switch to ACCOUNTADMIN role (required for API integrations)
+USE ROLE ACCOUNTADMIN;
+
+-- Create GitHub API Integration for Streamlit app deployment
+CREATE OR REPLACE API INTEGRATION nike_github_api_integration
+  API_PROVIDER = git_https_api
+  API_ALLOWED_PREFIXES = ('https://github.com/')
+  ENABLED = TRUE
+  COMMENT = 'API integration for Nike retail analytics Git repository access';
+
+-- Grant usage to data scientist role
+GRANT USAGE ON INTEGRATION nike_github_api_integration TO ROLE nike_po_data_scientist;
+
+-- Switch back to data scientist role
+USE ROLE nike_po_data_scientist;
+
+SELECT 'GitHub API Integration created! You can now deploy Streamlit apps from Git.' AS integration_status;
+
+/***********************************************************************************************************
+**
+ * 🎉 SETUP COMPLETE! 
+ ***********************************************************************************************************
+**
+ * Your Nike Retail Analytics platform is ready!
+ * 
+ * NEXT STEPS:
+ * 1. Deploy your Streamlit app from Git using the nike_github_api_integration
+ * 2. Upload the analytics notebooks to explore data insights
+ * 3. Start analyzing Nike product pricing and customer sentiment!
+ ***********************************************************************************************************
+**/
