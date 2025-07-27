@@ -855,7 +855,7 @@ CREATE OR REPLACE TABLE nike_reviews.raw_pos.products
     subcategory VARCHAR(16777216),
     cost_usd NUMBER(38,4),
     price_usd NUMBER(38,4),
-    product_image_url VARCHAR(16777216),
+    product_product_image_url VARCHAR(16777216),
     product_specs VARIANT
 );
 
@@ -923,7 +923,7 @@ SELECT DISTINCT
     p.category,
     p.subcategory,
     p.price_usd,
-    p.product_image_url,
+    p.product_product_image_url,
     s.store_name,
     s.city,
     s.region,
@@ -968,7 +968,7 @@ GROUP BY product_id, product_name, brand_name, category;
 --*/
 -- Insert sample products
 INSERT INTO nike_reviews.raw_pos.products 
-(product_id, product_name, brand_name, category, subcategory, cost_usd, price_usd, image_url, product_specs)
+(product_id, product_name, brand_name, category, subcategory, cost_usd, price_usd, product_image_url, product_specs)
 SELECT 1, 'Air Force 1 07', 'Nike Sportswear', 'Footwear', 'Lifestyle', 45.00, 110.00, 'https://static.nike.com/a/images/t_PDP_1280_v1/air-force-1.png', PARSE_JSON('{"material": "leather", "color": "white"}')
 UNION ALL
 SELECT 2, 'Air Max 90', 'Nike Sportswear', 'Footwear', 'Lifestyle', 55.00, 135.00, 'https://static.nike.com/a/images/t_PDP_1280_v1/air-max-90.png', PARSE_JSON('{"material": "mesh", "color": "white"}')
