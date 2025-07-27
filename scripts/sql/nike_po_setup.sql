@@ -136,9 +136,6 @@ CREATE OR REPLACE STAGE nike_po_prod.public.nike_data_stage
  * 2. Click on NIKE_DATA_STAGE
  * 3. Upload your ENTIRE scripts/csv/ folder structure
  * 
- * Option 2: SnowSQL Command Line
- * ==============================
- * PUT file://scripts/csv/* @nike_po_prod.public.nike_data_stage auto_compress=false recursive=true;
  * 
  * 📋 EXPECTED FILES IN STAGE AFTER UPLOAD:
  * ⏭️ AFTER UPLOADING: Continue running this script from here...
@@ -1083,3 +1080,26 @@ ALTER WAREHOUSE nike_ds_wh SET WAREHOUSE_SIZE = 'Medium';
  *************************************************************************************************************/
 
 SELECT 'Nike Analytics Platform setup is now complete! Both price optimization and customer reviews databases are ready.' AS note;
+
+/***********************************************************************************************************
+**
+ * 🔗 GITHUB API INTEGRATION SETUP
+ ***********************************************************************************************************
+**
+ * Create API integration to enable Streamlit app deployment from Git repository
+ * This allows Snowflake to access your GitHub repository for app deployment
+ ***********************************************************************************************************
+**/
+
+-- Create GitHub API Integration for Streamlit app deployment
+CREATE OR REPLACE API INTEGRATION nike_github_api_integration
+  API_PROVIDER = git_https_api
+  API_ALLOWED_PREFIXES = ('https://github.com/')
+  ENABLED = TRUE
+  COMMENT = 'API integration for Nike retail analytics Git repository access';
+
+-- Grant usage to data scientist role
+GRANT USAGE ON INTEGRATION nike_github_api_integration TO ROLE nike_po_data_scientist;
+
+SELECT 'GitHub API Integration created! You can now deploy Streamlit apps from Git.' AS integration_status;
+

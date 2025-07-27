@@ -85,13 +85,23 @@ After uploading, continue running the same script - it will automatically load a
 ## 📱 **Application Deployment**
 
 ### **🖥️ Deploy Streamlit App**
+
+**Prerequisites:** API Integration is automatically created by the setup script.
+
 1. **In Snowflake UI:** Projects → Streamlit → "+ Streamlit App"
 2. **Choose:** "From Git Repository"
-3. **Repository URL:** `https://github.com/pmv93/nike-retail-analytics-snowflake-aws`
-4. **Main File:** `scripts/nike_product_pricer_app.py`
-5. **Requirements File:** `requirements.txt`
-6. **Click:** "Create"
+3. **Configure Deployment Settings:**
+   - **Role:** `NIKE_PO_DATA_SCIENTIST`
+   - **Database:** `NIKE_PO_PROD`
+   - **Schema:** `PUBLIC`
+   - **Warehouse:** `NIKE_PO_DS_WH`
+   - **API Integration:** `NIKE_GITHUB_API_INTEGRATION` ✅
+   - **Repository URL:** `https://github.com/pmv93/nike-retail-analytics-snowflake-aws`
+   - **Main File:** `scripts/nike_product_pricer_app.py`
+   - **Requirements File:** `requirements.txt`
+4. **Click:** "Create"
 
+**Note:** The `nike_github_api_integration` is created automatically by the setup script to enable Git repository access.
 ### **📓 Upload Analytics Notebooks**
 1. **In Snowflake UI:** Projects → Notebooks → "+ Notebook" → "Import .ipynb file"
 2. **Upload Files:**
