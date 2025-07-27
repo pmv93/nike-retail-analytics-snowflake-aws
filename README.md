@@ -98,9 +98,10 @@ After uploading, continue running the same script - it will automatically load a
    - **API Integration:** `NIKE_GITHUB_API_INTEGRATION` ✅
    - **Repository URL:** `https://github.com/pmv93/nike-retail-analytics-snowflake-aws`
    - **Main File:** `scripts/nike_product_pricer_app.py`
-   - **Requirements File:** `requirements.txt`
+   - **Packages:** Add required packages via "Packages" dropdown (listed in app comments)
 4. **Click:** "Create"
 
+**Package Management:** Required packages are listed in comments at the top of the Streamlit app file. When creating the app in Snowflake, add them via the "Packages" dropdown: pandas, numpy, plotly, matplotlib, seaborn, wordcloud, streamlit, snowflake-snowpark-python, snowflake-ml-python.
 **Note:** The `nike_github_api_integration` is created automatically by the setup script to enable Git repository access.
 ### **📓 Upload Analytics Notebooks**
 1. **In Snowflake UI:** Projects → Notebooks → "+ Notebook" → "Import .ipynb file"
@@ -128,7 +129,6 @@ After complete deployment:
 ### **🗂️ Essential Setup Files**
 - **`scripts/sql/nike_po_setup.sql`** - Single comprehensive setup script
 - **`scripts/csv/*.csv`** - 10 Nike data files (flat structure)
-- **`requirements.txt`** - Python dependencies for Streamlit app
 
 ### **📱 Application Files**  
 - **`scripts/nike_product_pricer_app.py`** - Main Streamlit application
