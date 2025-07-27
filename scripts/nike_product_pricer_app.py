@@ -15,6 +15,7 @@ Required Packages (Compatible versions for Snowflake Python 3.10 runtime):
 
 Note: Add these packages via Snowflake UI when deploying the Streamlit app:
 Projects → Streamlit → Package dropdown → Add packages
+⚠️ IMPORTANT: Select Python 3.10 runtime version for compatibility
 Use the exact versions listed above to avoid compatibility issues.
 """
 

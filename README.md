@@ -95,6 +95,7 @@ After uploading, continue running the same script - it will automatically load a
    - **Database:** `NIKE_PO_PROD`
    - **Schema:** `PUBLIC`
    - **Warehouse:** `NIKE_PO_DS_WH`
+   - **Python Version:** `3.10` ⚠️ **IMPORTANT: Select Python 3.10 for package compatibility**
    - **API Integration:** `NIKE_GITHUB_API_INTEGRATION` ✅
    - **Repository URL:** `https://github.com/pmv93/nike-retail-analytics-snowflake-aws`
    - **Main File:** `scripts/nike_product_pricer_app.py`
