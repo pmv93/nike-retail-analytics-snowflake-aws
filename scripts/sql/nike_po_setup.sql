@@ -855,7 +855,7 @@ CREATE OR REPLACE TABLE nike_reviews.raw_pos.products
     subcategory VARCHAR(16777216),
     cost_usd NUMBER(38,4),
     price_usd NUMBER(38,4),
-    product_product_image_url VARCHAR(16777216),
+    product_image_url VARCHAR(16777216),
     product_specs VARIANT
 );
 
@@ -923,7 +923,7 @@ SELECT DISTINCT
     p.category,
     p.subcategory,
     p.price_usd,
-    p.product_product_image_url,
+    p.product_image_url,
     s.store_name,
     s.city,
     s.region,
