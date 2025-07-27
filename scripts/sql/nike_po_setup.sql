@@ -967,14 +967,16 @@ GROUP BY product_id, product_name, brand_name, category;
  • sample data insertion for reviews demo
 --*/
 -- Insert sample products
-INSERT INTO nike_reviews.raw_pos.products VALUES
+INSERT INTO nike_reviews.raw_pos.products 
+SELECT * FROM VALUES
 (1, 'Air Force 1 07', 'Nike Sportswear', 'Footwear', 'Lifestyle', 45.00, 110.00, 'https://static.nike.com/a/images/t_PDP_1280_v1/air-force-1.png', PARSE_JSON('{"material": "leather", "color": "white"}')),
 (2, 'Air Max 90', 'Nike Sportswear', 'Footwear', 'Lifestyle', 55.00, 135.00, 'https://static.nike.com/a/images/t_PDP_1280_v1/air-max-90.png', PARSE_JSON('{"material": "mesh", "color": "white"}')),
 (3, 'Air Zoom Pegasus 40', 'Nike Running', 'Footwear', 'Running', 60.00, 140.00, 'https://static.nike.com/a/images/t_PDP_1280_v1/pegasus-40.png', PARSE_JSON('{"material": "flyknit", "color": "black"}')),
 (4, 'Metcon 9', 'Nike Training', 'Footwear', 'Training', 65.00, 150.00, 'https://static.nike.com/a/images/t_PDP_1280_v1/metcon-9.png', PARSE_JSON('{"material": "synthetic", "color": "gray"}')),
 (5, 'Air Jordan 1 Low', 'Nike Jordan', 'Footwear', 'Basketball', 50.00, 120.00, 'https://static.nike.com/a/images/t_PDP_1280_v1/jordan-1-low.png', PARSE_JSON('{"material": "leather", "color": "bred"}')),
 (6, 'Tech Fleece Hoodie', 'Nike Tech', 'Apparel', 'Hoodies', 40.00, 100.00, 'https://static.nike.com/a/images/t_PDP_1280_v1/tech-fleece.png', PARSE_JSON('{"material": "fleece", "color": "black"}')),
-(7, 'Dunk Low', 'Nike SB', 'Footwear', 'Lifestyle', 45.00, 130.00, 'https://static.nike.com/a/images/t_PDP_1280_v1/dunk-low.png', PARSE_JSON('{"material": "leather", "color": "panda"}'));
+(7, 'Dunk Low', 'Nike SB', 'Footwear', 'Lifestyle', 45.00, 130.00, 'https://static.nike.com/a/images/t_PDP_1280_v1/dunk-low.png', PARSE_JSON('{"material": "leather", "color": "panda"}'))
+AS products(product_id, product_name, brand_name, category, subcategory, cost_usd, price_usd, image_url, product_specs);
 
 -- Insert sample stores
 INSERT INTO nike_reviews.raw_pos.stores VALUES
