@@ -1103,3 +1103,40 @@ GRANT USAGE ON INTEGRATION nike_github_api_integration TO ROLE nike_po_data_scie
 
 SELECT 'GitHub API Integration created! You can now deploy Streamlit apps from Git.' AS integration_status;
 
+
+-- Create the missing product_sentiment_pricing_v view that combines sentiment with pricing data
+CREATE OR REPLACE VIEW nike_reviews.analytics.product_sentiment_pricing_v AS
+SELECT 
+    s.product_id,
+    s.product_name,
+    s.brand_name,
+    s.category,
+    s.total_reviews,
+    s.avg_rating,
+    s.avg_rating_rounded,
+    s.positive_reviews,
+    s.negative_reviews,
+    s.neutral_reviews,
+    p.cost_usd,
+    p.price_usd,
+    p.product_image_url,
+    p.product_specs,
+    -- Calculate sentiment score (0-1 scale)
+    CASE 
+        WHEN s.total_reviews > 0 THEN s.positive_reviews::FLOAT / s.total_reviews::FLOAT
+        ELSE 0.5 
+    END as sentiment_score,
+    -- Categorize sentiment
+    CASE 
+        WHEN s.avg_rating >= 4.0 THEN 'Positive'
+        WHEN s.avg_rating >= 3.0 THEN 'Neutral'
+        ELSE 'Negative'
+    END as sentiment_category
+FROM nike_reviews.analytics.product_sentiment_v s
+LEFT JOIN nike_reviews.raw_pos.products p ON s.product_id = p.product_id;
+
+-- Grant access to the new view
+GRANT ALL ON VIEW nike_reviews.analytics.product_sentiment_pricing_v TO ROLE nike_po_data_scientist;
+
+SELECT 'Product sentiment pricing view created successfully!' AS view_status;
+
