@@ -80,20 +80,23 @@ PUT file://scripts/csv/* @nike_po_prod.public.nike_data_stage auto_compress=fals
 
 **That's it!** One stage, one upload command. The folder structure is preserved automatically.
 
-## 📋 **Execution Order**
+## 📋 **One-Script Execution Process**
 
-1. **Setup Database**: Run `scripts/sql/nike_po_setup.sql` (this creates both databases and loads sample data)
-2. **Upload Data**: Upload Nike CSV files to stages (see above)
-3. **Re-run Setup**: Re-run `scripts/sql/nike_po_setup.sql` to load data into tables
+1. **Run Script**: Execute `scripts/sql/nike_po_setup.sql` in Snowflake SQL Worksheet
+2. **Upload When Prompted**: Script will pause with clear instructions to upload CSV files
+3. **Continue Script**: After uploading, continue running the same script to completion
 4. **Deploy Apps**: Upload notebooks and deploy Streamlit apps
 
-## 🎯 **Single Setup Script**
+**That's it!** One script run with a pause for file upload.
 
-The `nike_po_setup.sql` script now includes everything you need:
+## 🎯 **Single Setup Script - Run Once!**
+
+The `nike_po_setup.sql` script includes everything and only needs to be run once:
 - ✅ **Price Optimization Database** (`nike_po_prod`) with all Nike product data
 - ✅ **Customer Reviews Database** (`nike_reviews`) with Cortex AI capabilities  
 - ✅ **Sample Review Data** (55+ realistic Nike product reviews in multiple languages)
 - ✅ **Complete Analytics Views** for both pricing and sentiment analysis
+- ✅ **Built-in Upload Instructions** - script pauses to guide you through file upload
 
 ## Customer Reviews Analytics Setup
 

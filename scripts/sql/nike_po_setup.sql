@@ -1,7 +1,16 @@
 /*----------------------------------------------------------------------------------
-Instructions: Run all of this script to create the required tables and roles.
+Instructions: 
+🚀 RUN THIS ENTIRE SCRIPT ONCE! 
+The script will pause at the upload section - follow the instructions there.
 
  ----------------------------------------------------------------------------------*/
+
+/*************************************************************************************************************
+ * 🏁 PART 1: DATABASE & INFRASTRUCTURE SETUP 🏁
+ *************************************************************************************************************
+ * This section creates all databases, schemas, tables, warehouses, and stages.
+ * Run this first, then follow the upload instructions that appear.
+ *************************************************************************************************************/
 
 use role securityadmin;
 
@@ -113,32 +122,52 @@ CREATE OR REPLACE STAGE nike_po_prod.public.nike_data_stage
   COMMENT = 'Single stage for all Nike product data - maintains folder structure';
 
 
-/*---------------------------*/
--- DATA UPLOAD INSTRUCTIONS
-/*---------------------------*/
--- IMPORTANT: After running this setup script, you need to upload Nike CSV files to the single stage.
--- 
--- Option 1: Using Snowflake Web UI (Recommended)
--- 1. Go to Snowflake UI -> Databases -> NIKE_PO_PROD -> Schemas -> PUBLIC -> Stages
--- 2. Click on NIKE_DATA_STAGE
--- 3. Upload your ENTIRE scripts/csv/ folder structure to maintain the folder organization
---    The stage will contain:
---    - csv/raw_supply_chain/item/item.csv
---    - csv/raw_supply_chain/recipe/recipe.csv
---    - csv/raw_supply_chain/item_prices/item_prices.csv
---    - csv/raw_supply_chain/menu_prices/menu_prices.csv
---    - csv/raw_supply_chain/price_elasticity/price_elasticity.csv
---    - csv/raw_safegraph/core_poi_geometry.csv
---    - csv/harmonized/menu_item_aggregate_dt/menu_item_aggregate_dt.csv
---    - csv/harmonized/menu_item_cogs_and_price_v/menu_item_cogs_and_price_v.csv
---    - csv/analytics/menu_item_aggregate_v/menu_item_aggregate_v.csv
---    - csv/analytics/menu_item_cogs_and_price_v/menu_item_cogs_and_price_v.csv
---    - csv/analytics/order_item_cost_agg_v/order_item_cost_agg_v.csv
--- 
--- Option 2: Using SnowSQL command line (if you have SnowSQL installed)
--- PUT file://scripts/csv/* @nike_po_prod.public.nike_data_stage auto_compress=false recursive=true;
---
--- THEN re-run this script to load the data into tables.
+/*************************************************************************************************************
+ * 🛑 STOP HERE! UPLOAD YOUR CSV FILES BEFORE CONTINUING 🛑
+ *************************************************************************************************************
+ * 
+ * ✅ PART 1 COMPLETE: All databases, tables, and stages have been created!
+ * 
+ * 📁 NOW UPLOAD YOUR CSV FILES:
+ * 
+ * Option 1: Snowflake Web UI (Recommended)
+ * ==========================================
+ * 1. Go to Snowflake UI -> Databases -> NIKE_PO_PROD -> Schemas -> PUBLIC -> Stages
+ * 2. Click on NIKE_DATA_STAGE
+ * 3. Upload your ENTIRE scripts/csv/ folder structure
+ * 
+ * Option 2: SnowSQL Command Line
+ * ==============================
+ * PUT file://scripts/csv/* @nike_po_prod.public.nike_data_stage auto_compress=false recursive=true;
+ * 
+ * 📋 EXPECTED FILES IN STAGE AFTER UPLOAD:
+ * - csv/raw_supply_chain/item/item.csv
+ * - csv/raw_supply_chain/recipe/recipe.csv  
+ * - csv/raw_supply_chain/item_prices/item_prices.csv
+ * - csv/raw_supply_chain/menu_prices/menu_prices.csv
+ * - csv/raw_supply_chain/price_elasticity/price_elasticity.csv
+ * - csv/raw_safegraph/core_poi_geometry.csv
+ * - csv/harmonized/menu_item_aggregate_dt/menu_item_aggregate_dt.csv
+ * - csv/harmonized/menu_item_cogs_and_price_v/menu_item_cogs_and_price_v.csv
+ * - csv/analytics/menu_item_aggregate_v/menu_item_aggregate_v.csv
+ * - csv/analytics/menu_item_cogs_and_price_v/menu_item_cogs_and_price_v.csv
+ * - csv/analytics/order_item_cost_agg_v/order_item_cost_agg_v.csv
+ * 
+ * ⏭️ AFTER UPLOADING: Continue running this script from here...
+ * 
+ *************************************************************************************************************/
+
+-- Verify stage contents (optional check)
+LIST @nike_po_prod.public.nike_data_stage;
+
+-- If you see your CSV files listed above, continue with the data loading below...
+
+/*************************************************************************************************************
+ * 🚀 PART 2: DATA LOADING INTO TABLES 🚀
+ *************************************************************************************************************
+ * This section loads your uploaded CSV files into the database tables.
+ * Only run this after uploading your CSV files to the stage above.
+ *************************************************************************************************************/
 
 /*---------------------------*/
 -- create raw_pos tables
@@ -1042,7 +1071,21 @@ INSERT INTO nike_reviews.raw_support.product_reviews VALUES
 -- scale wh to medium
 ALTER WAREHOUSE nike_ds_wh SET WAREHOUSE_SIZE = 'Medium';
 
-/*---------------------------*/
--- sql completion note
-/*---------------------------*/
+/*************************************************************************************************************
+ * 🎉 SETUP COMPLETE! 🎉
+ *************************************************************************************************************
+ * Your Nike Analytics Platform is now fully configured!
+ * 
+ * ✅ nike_po_prod database (price optimization) 
+ * ✅ nike_reviews database (customer sentiment)
+ * ✅ All CSV data loaded into tables
+ * ✅ 55+ sample Nike product reviews
+ * ✅ Complete analytics views ready
+ * 
+ * 🚀 NEXT STEPS:
+ * 1. Deploy Streamlit apps from your Git repository
+ * 2. Upload analytics notebooks to Snowflake
+ * 3. Start analyzing Nike product pricing and sentiment!
+ *************************************************************************************************************/
+
 SELECT 'Nike Analytics Platform setup is now complete! Both price optimization and customer reviews databases are ready.' AS note;
