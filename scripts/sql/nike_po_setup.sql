@@ -1105,6 +1105,7 @@ SELECT 'GitHub API Integration created! You can now deploy Streamlit apps from G
 
 
 -- Create the missing product_sentiment_pricing_v view that combines sentiment with pricing data
+-- Fix the product_sentiment_pricing_v view to match Streamlit app expectations
 CREATE OR REPLACE VIEW nike_reviews.analytics.product_sentiment_pricing_v AS
 SELECT 
     s.product_id,
@@ -1121,11 +1122,16 @@ SELECT
     p.price_usd,
     p.product_image_url,
     p.product_specs,
-    -- Calculate sentiment score (0-1 scale)
+    -- Column names expected by Streamlit app:
     CASE 
         WHEN s.total_reviews > 0 THEN s.positive_reviews::FLOAT / s.total_reviews::FLOAT
         ELSE 0.5 
-    END as sentiment_score,
+    END as avg_sentiment,
+    -- Calculate recommendation rate (percentage of 4+ star reviews)
+    CASE 
+        WHEN s.total_reviews > 0 THEN (s.positive_reviews::FLOAT / s.total_reviews::FLOAT) * 100
+        ELSE 50.0 
+    END as recommendation_rate,
     -- Categorize sentiment
     CASE 
         WHEN s.avg_rating >= 4.0 THEN 'Positive'
@@ -1139,4 +1145,3 @@ LEFT JOIN nike_reviews.raw_pos.products p ON s.product_id = p.product_id;
 GRANT ALL ON VIEW nike_reviews.analytics.product_sentiment_pricing_v TO ROLE nike_po_data_scientist;
 
 SELECT 'Product sentiment pricing view created successfully!' AS view_status;
-
