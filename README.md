@@ -60,34 +60,25 @@ For prerequisites, environment setup, step-by-step guide and instructions, pleas
 
 **IMPORTANT**: Before running the SQL scripts, you need to upload your Nike CSV data files to Snowflake stages:
 
-### **📁 Required Files to Upload**
+### **📁 Single Stage Upload - Much Simpler!**
 
-After running `scripts/sql/nike_po_setup.sql`, upload these files from your local repository:
+After running `scripts/sql/nike_po_setup.sql`, upload ALL your Nike CSV files to ONE stage:
 
-| Snowflake Stage | Upload Files From |
-|-----------------|-------------------|
-| `raw_pos_stage` | `scripts/csv/raw_pos/` folder |
-| `raw_customer_stage` | `scripts/csv/raw_customer/` folder |
-| `raw_supply_chain_stage` | `scripts/csv/raw_supply_chain/` folder |
-| `raw_safegraph_stage` | `scripts/csv/raw_safegraph/core_poi_geometry.csv` |
-| `harmonized_stage` | `scripts/csv/harmonized/menu_item_aggregate_dt/menu_item_aggregate_dt.csv` |
-| `analytics_stage` | `scripts/csv/analytics/` folder |
+**Single Stage:** `nike_data_stage` - Upload your entire `scripts/csv/` folder structure
 
 ### **💻 Upload Methods**
 
 #### **Option 1: Snowflake Web UI (Recommended)**
 1. In Snowflake UI: **Databases** → **NIKE_PO_PROD** → **Schemas** → **PUBLIC** → **Stages**
-2. Click each stage → **Upload Files** → Select corresponding CSV files
+2. Click **NIKE_DATA_STAGE**
+3. Upload your **entire** `scripts/csv/` folder (maintains folder structure automatically)
 
 #### **Option 2: SnowSQL Command Line**
 ```bash
-PUT file://scripts/csv/raw_pos/* @nike_po_prod.public.raw_pos_stage;
-PUT file://scripts/csv/raw_customer/* @nike_po_prod.public.raw_customer_stage;
-PUT file://scripts/csv/raw_supply_chain/* @nike_po_prod.public.raw_supply_chain_stage;
-PUT file://scripts/csv/raw_safegraph/* @nike_po_prod.public.raw_safegraph_stage;
-PUT file://scripts/csv/harmonized/* @nike_po_prod.public.harmonized_stage;
-PUT file://scripts/csv/analytics/* @nike_po_prod.public.analytics_stage;
+PUT file://scripts/csv/* @nike_po_prod.public.nike_data_stage auto_compress=false recursive=true;
 ```
+
+**That's it!** One stage, one upload command. The folder structure is preserved automatically.
 
 ## 📋 **Execution Order**
 
