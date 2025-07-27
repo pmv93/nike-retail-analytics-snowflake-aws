@@ -41,7 +41,7 @@ Nike is one of the world's largest athletic footwear and apparel companies with 
 │   └── generate_nike_reviews.py              # Sample review data generator
 ├── setup/
 │   ├── nike_reviews_setup.sql                # Customer reviews database setup
-│   └── tb_po_setup.sql                       # Price optimization database setup
+│   └── nike_po_setup.sql                     # Price optimization database setup
 └── nike_product_images.json                  # Product image mappings
 ```
 
