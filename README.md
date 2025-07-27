@@ -56,9 +56,51 @@ The original guides have been significantly modified and enhanced to focus on Ni
 ## Step-By-Step Guide
 For prerequisites, environment setup, step-by-step guide and instructions, please refer to the comprehensive [Nike Retail Project README](Nike_Retail_Project_README.ipynb).
 
+## 🗃️ **Nike Data Upload Instructions**
+
+**IMPORTANT**: Before running the SQL scripts, you need to upload your Nike CSV data files to Snowflake stages:
+
+### **📁 Required Files to Upload**
+
+After running `scripts/sql/nike_po_setup.sql`, upload these files from your local repository:
+
+| Snowflake Stage | Upload Files From |
+|-----------------|-------------------|
+| `raw_pos_stage` | `scripts/csv/raw_pos/` folder |
+| `raw_customer_stage` | `scripts/csv/raw_customer/` folder |
+| `raw_supply_chain_stage` | `scripts/csv/raw_supply_chain/` folder |
+| `raw_safegraph_stage` | `scripts/csv/raw_safegraph/core_poi_geometry.csv` |
+| `harmonized_stage` | `scripts/csv/harmonized/menu_item_aggregate_dt/menu_item_aggregate_dt.csv` |
+| `analytics_stage` | `scripts/csv/analytics/` folder |
+
+### **💻 Upload Methods**
+
+#### **Option 1: Snowflake Web UI (Recommended)**
+1. In Snowflake UI: **Databases** → **NIKE_PO_PROD** → **Schemas** → **PUBLIC** → **Stages**
+2. Click each stage → **Upload Files** → Select corresponding CSV files
+
+#### **Option 2: SnowSQL Command Line**
+```bash
+PUT file://scripts/csv/raw_pos/* @nike_po_prod.public.raw_pos_stage;
+PUT file://scripts/csv/raw_customer/* @nike_po_prod.public.raw_customer_stage;
+PUT file://scripts/csv/raw_supply_chain/* @nike_po_prod.public.raw_supply_chain_stage;
+PUT file://scripts/csv/raw_safegraph/* @nike_po_prod.public.raw_safegraph_stage;
+PUT file://scripts/csv/harmonized/* @nike_po_prod.public.harmonized_stage;
+PUT file://scripts/csv/analytics/* @nike_po_prod.public.analytics_stage;
+```
+
+## 📋 **Execution Order**
+
+1. **Setup Database**: Run `scripts/sql/nike_po_setup.sql`
+2. **Upload Data**: Upload Nike CSV files to stages (see above)
+3. **Re-run Setup**: Re-run `scripts/sql/nike_po_setup.sql` to load data into tables
+4. **Customer Reviews**: Run `setup/nike_reviews_setup.sql` 
+5. **Sample Data**: Run `scripts/nike_sample_reviews.sql`
+6. **Deploy Apps**: Upload notebooks and deploy Streamlit apps
+
 ## Customer Reviews Analytics Setup
 
 1. **Database Setup**: Run `setup/nike_reviews_setup.sql` to create the reviews database
-2. **Sample Data**: Use `scripts/generate_nike_reviews.py` to generate sample review data
+2. **Sample Data**: Load sample review data using `scripts/nike_sample_reviews.sql`
 3. **Analytics Notebook**: Open `notebooks/nike_product_review_analytics.ipynb` for Cortex-powered analysis
 4. **Streamlit Integration**: The pricing app now shows customer sentiment alongside pricing data
